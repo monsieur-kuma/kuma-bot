@@ -1,15 +1,8 @@
-# kuma-bot
+## Discord-Bot
 
-To install dependencies:
+### Setup
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.18. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+- Visit [Discord Developer Portal](https://discord.com/developers/applications) to create application and bot.
+- Create `.env.development.local` from `.env.development` then provide requires config.
+- Create your own discord server for development.
+- Run `invite.js` to generate invitation link, paste link to browser to add created bot to your test server.
