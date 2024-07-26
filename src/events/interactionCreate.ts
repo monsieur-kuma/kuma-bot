@@ -6,7 +6,9 @@ import { Settings } from 'models';
 // Emitted when an interaction is created.
 export const handler = async (client: Client, interaction: BaseInteraction) => {
   // If it's not a command, stop.
-  if (!interaction.isCommand()) return;
+  if (!interaction.isCommand()) {
+    return;
+  }
 
   // Grab the command data from the client.container.slashcmds Collection
   const cmd = Container.slashcmds.get(interaction.commandName);
