@@ -1,4 +1,4 @@
-/* eslint-disable no-var */
+/* eslint-disable no-var,  vars-on-top */
 import type { Collection } from 'discord.js';
 import { Sequelize } from 'sequelize';
 import type { Logger as LoggerType } from 'winston';

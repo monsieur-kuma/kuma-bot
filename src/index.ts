@@ -7,6 +7,8 @@ import setupDatabase from 'services/database';
 import setupLogger from 'services/logger';
 import type { Command, SlashCmd } from 'types';
 
+require('dotenv-flow').config();
+
 global.Logger = setupLogger();
 global.Database = setupDatabase();
 

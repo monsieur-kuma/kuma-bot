@@ -1,0 +1,6 @@
+{
+  "ignore": [".git", "node_modules", "dist"],
+  "watch": ["./src"],
+  "exec": "cross-env NODE_ENV=development node --inspect -r ts-node/register ./src/index.ts",
+  "ext": "ts"
+}

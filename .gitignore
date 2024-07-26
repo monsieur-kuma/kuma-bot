@@ -1,5 +1,6 @@
 .DS_Store
 .eslintcache
+scripts
 npm-debug.log*
 *.log
 *.sqlite
