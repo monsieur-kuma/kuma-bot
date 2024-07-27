@@ -2,6 +2,7 @@ import {
   ActionRowBuilder,
   Client,
   CommandInteraction,
+  EmbedBuilder,
   ModalBuilder,
   TextInputBuilder,
   TextInputStyle,
@@ -46,17 +47,30 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
         }
         const hoyolab = new Hoyolab({ cookie });
         const gameRecords = await hoyolab.gameRecordCard();
-        const gameInfo: CustomObject<{ uid: number; server: string }> = {};
+        const gameInfo: CustomObject<{ uid: number; server: string; name: string }> = {};
+        const results: { name: string; value: string }[] = [];
         options.forEach(({ name }) => {
-          const game = gameRecords.find(
-            (record) => record.game_id === GAMES[name as keyof typeof GAMES].id
-          );
+          const gameData = GAMES[name as keyof typeof GAMES];
+          const game = gameRecords.find((record) => record.game_id === gameData.id);
           if (game) {
-            gameInfo[name] = { uid: Number(game.game_role_id), server: game.region };
+            gameInfo[name] = {
+              uid: Number(game.game_role_id),
+              server: game.region,
+              name: game.nickname,
+            };
+            results.push({
+              name: gameData.name,
+              value: `${game.nickname} - UID: ${game.game_role_id}`,
+            });
           }
         });
         Cookies.create({ userId: interaction.user.id, cookie: JSON.stringify(cookie), gameInfo });
-        await modalInteraction.reply('Account linked successfully');
+        const embed = new EmbedBuilder()
+          .setColor('Random')
+          .setTitle('Linked Hoyolab Account')
+          .addFields(results)
+          .setTimestamp();
+        await modalInteraction.reply({ embeds: [embed], ephemeral: true });
       });
   } catch (error) {
     Logger.error(error);

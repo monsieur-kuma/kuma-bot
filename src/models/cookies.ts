@@ -3,6 +3,7 @@ import { DataTypes, Model } from 'sequelize';
 type GameInfo = CustomObject<{
   uid: number;
   server: string;
+  name: string;
 }>;
 
 export class Cookies extends Model {

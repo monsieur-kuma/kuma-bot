@@ -6,6 +6,7 @@ import {
   ICookie,
   IDailyClaim,
   LanguageEnum,
+  ZenlessZoneZero,
 } from 'michos_api';
 import { Cookies } from 'models';
 import type { SlashCmd } from 'types';
@@ -43,6 +44,15 @@ const checkInGame = async (
         lang: LanguageEnum.ENGLISH,
       });
       const result = await hsr.daily.claim();
+      return result;
+    }
+    case 'zzz': {
+      const zzz = new ZenlessZoneZero({
+        cookie: JSON.parse(cookie) as ICookie,
+        uid,
+        lang: LanguageEnum.ENGLISH,
+      });
+      const result = await zzz.daily.claim();
       return result;
     }
     default: {
