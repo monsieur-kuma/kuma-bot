@@ -10,6 +10,7 @@ import { Hoyolab } from 'michos_api';
 import { Cookies } from 'models';
 import type { SlashCmd } from 'types';
 import { GAMES } from 'utils';
+import { parseCookie } from 'utils/common';
 
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
   const options = interaction.options.data;
@@ -37,8 +38,13 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
         filter: (i) => i.user.id === interaction.user.id && i.customId === 'link_hoyolab',
       })
       .then(async (modalInteraction) => {
-        const cookie = modalInteraction.components[0].components[0].value;
-        const hoyolab = new Hoyolab({ cookie: JSON.parse(cookie) });
+        const userInput = modalInteraction.components[0].components[0].value;
+        const cookie = parseCookie(userInput);
+        if (!cookie) {
+          await modalInteraction.reply('Invalid cookie provided');
+          return;
+        }
+        const hoyolab = new Hoyolab({ cookie });
         const gameRecords = await hoyolab.gameRecordCard();
         const gameInfo: CustomObject<{ uid: number; server: string }> = {};
         options.forEach(({ name }) => {
@@ -49,7 +55,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
             gameInfo[name] = { uid: Number(game.game_role_id), server: game.region };
           }
         });
-        Cookies.create({ userId: interaction.user.id, cookie, gameInfo });
+        Cookies.create({ userId: interaction.user.id, cookie: JSON.stringify(cookie), gameInfo });
         await modalInteraction.reply('Account linked successfully');
       });
   } catch (error) {
