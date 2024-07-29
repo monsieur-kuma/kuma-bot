@@ -1,4 +1,12 @@
-import { ICookie, LanguageEnum } from 'michos_api';
+import {
+  GenshinImpact,
+  HonkaiImpact,
+  HonkaiStarRail,
+  ICookie,
+  IDailyClaim,
+  LanguageEnum,
+  ZenlessZoneZero,
+} from 'michos_api';
 
 import { cookieKeys } from './options';
 
@@ -58,4 +66,53 @@ export const parseCookie = (cookie: string): ICookie | null => {
   }
 
   return Object.fromEntries(cookies) as ICookie;
+};
+
+export const checkInGame = async (
+  cookie: string,
+  game: string,
+  info: { uid: number; server: string }
+): Promise<IDailyClaim | null> => {
+  const { uid } = info;
+  switch (game) {
+    case 'gi': {
+      const genshin = new GenshinImpact({
+        cookie: JSON.parse(cookie) as ICookie,
+        uid,
+        lang: LanguageEnum.ENGLISH,
+      });
+      const result = await genshin.daily.claim();
+      return result;
+    }
+    case 'hi3': {
+      const hi3 = new HonkaiImpact({
+        cookie: JSON.parse(cookie) as ICookie,
+        uid,
+        lang: LanguageEnum.ENGLISH,
+      });
+      const result = await hi3.daily.claim();
+      return result;
+    }
+    case 'hsr': {
+      const hsr = new HonkaiStarRail({
+        cookie: JSON.parse(cookie) as ICookie,
+        uid,
+        lang: LanguageEnum.ENGLISH,
+      });
+      const result = await hsr.daily.claim();
+      return result;
+    }
+    case 'zzz': {
+      const zzz = new ZenlessZoneZero({
+        cookie: JSON.parse(cookie) as ICookie,
+        uid,
+        lang: LanguageEnum.ENGLISH,
+      });
+      const result = await zzz.daily.claim();
+      return result;
+    }
+    default: {
+      return null;
+    }
+  }
 };

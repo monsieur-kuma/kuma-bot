@@ -1,65 +1,8 @@
 import { Client, CommandInteraction, EmbedBuilder } from 'discord.js';
-import {
-  GenshinImpact,
-  HonkaiImpact,
-  HonkaiStarRail,
-  ICookie,
-  IDailyClaim,
-  LanguageEnum,
-  ZenlessZoneZero,
-} from 'michos_api';
 import { Cookies } from 'models';
 import type { SlashCmd } from 'types';
 import { GAMES } from 'utils';
-
-const checkInGame = async (
-  cookie: string,
-  game: string,
-  info: { uid: number; server: string }
-): Promise<IDailyClaim | null> => {
-  const { uid } = info;
-  switch (game) {
-    case 'gi': {
-      const genshin = new GenshinImpact({
-        cookie: JSON.parse(cookie) as ICookie,
-        uid,
-        lang: LanguageEnum.ENGLISH,
-      });
-      const result = await genshin.daily.claim();
-      return result;
-    }
-    case 'hi3': {
-      const hi3 = new HonkaiImpact({
-        cookie: JSON.parse(cookie) as ICookie,
-        uid,
-        lang: LanguageEnum.ENGLISH,
-      });
-      const result = await hi3.daily.claim();
-      return result;
-    }
-    case 'hsr': {
-      const hsr = new HonkaiStarRail({
-        cookie: JSON.parse(cookie) as ICookie,
-        uid,
-        lang: LanguageEnum.ENGLISH,
-      });
-      const result = await hsr.daily.claim();
-      return result;
-    }
-    case 'zzz': {
-      const zzz = new ZenlessZoneZero({
-        cookie: JSON.parse(cookie) as ICookie,
-        uid,
-        lang: LanguageEnum.ENGLISH,
-      });
-      const result = await zzz.daily.claim();
-      return result;
-    }
-    default: {
-      return null;
-    }
-  }
-};
+import { checkInGame } from 'utils/common';
 
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
   await interaction.deferReply();
@@ -94,7 +37,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
 export const data: SlashCmd['data'] = {
   name: 'checkin_games',
-  description: 'Check in games for the day in hoyolab',
+  description: 'Check in all games you have linked',
   options: [],
   defaultPermission: true,
 };

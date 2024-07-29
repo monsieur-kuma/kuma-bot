@@ -2,6 +2,7 @@ import { INTENTS, PARTIALS } from 'configs';
 import { Client, Collection } from 'discord.js';
 import { glob } from 'glob';
 import _ from 'lodash';
+import schedule from 'node-schedule';
 import path from 'path';
 import setupDatabase from 'services/database';
 import setupLogger from 'services/logger';
@@ -71,21 +72,27 @@ const client = new Client({
   );
 
   client.login(process.env.BOT_TOKEN);
+  const setupSchedule = await import('services/schedule');
+  setupSchedule.default(client);
 })();
 
 process.on('SIGTERM', async () => {
   client.destroy();
   await Database.close();
+  schedule.gracefulShutdown();
 });
 process.on('SIGINT', async () => {
   client.destroy();
   await Database.close();
+  schedule.gracefulShutdown();
 });
 process.on('SIGQUIT', async () => {
   client.destroy();
   await Database.close();
+  schedule.gracefulShutdown();
 });
 process.once('SIGUSR2', async () => {
   client.destroy();
   await Database.close();
+  schedule.gracefulShutdown();
 });
