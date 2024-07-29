@@ -1,7 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 
-import { Cookies } from './cookies';
-
 export class AutoCheckin extends Model {
   declare userId: string;
 }
@@ -17,9 +15,3 @@ AutoCheckin.init(
     sequelize: Database,
   }
 );
-
-AutoCheckin.hasMany(Cookies, {
-  foreignKey: 'userId',
-  onDelete: 'CASCADE',
-  onUpdate: 'CASCADE',
-});
