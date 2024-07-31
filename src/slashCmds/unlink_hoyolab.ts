@@ -60,7 +60,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
   await message
     .awaitMessageComponent({
-      time: 5000,
+      time: 60000,
       filter: (i) => i.user.id === interaction.user.id && i.customId === 'select_unlink',
     })
     .then(async (selectInteraction) => {
