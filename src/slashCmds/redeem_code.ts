@@ -1,5 +1,11 @@
 import { ChatInputCommandInteraction, Client, CommandInteraction, EmbedBuilder } from 'discord.js';
-import { GenshinImpact, HonkaiStarRail, IRedeemCode, ZenlessZoneZero } from 'michos_api';
+import {
+  GenshinImpact,
+  HonkaiStarRail,
+  IRedeemCode,
+  LanguageEnum,
+  ZenlessZoneZero,
+} from 'michos_api';
 import { Cookies } from 'models';
 import type { SlashCmd } from 'types';
 import { GAMES } from 'utils';
@@ -18,6 +24,7 @@ const redeemCode = async (info: RedeemInfo): Promise<IRedeemCode | null> => {
       const gi = new GenshinImpact({
         cookie: JSON.parse(cookie),
         uid: gameInfo.uid,
+        lang: LanguageEnum.VIETNAMESE,
       });
       const result = await gi.redeem.claim(code);
       return result;
@@ -26,6 +33,7 @@ const redeemCode = async (info: RedeemInfo): Promise<IRedeemCode | null> => {
       const hsr = new HonkaiStarRail({
         cookie: JSON.parse(cookie),
         uid: gameInfo.uid,
+        lang: LanguageEnum.VIETNAMESE,
       });
       const result = await hsr.redeem.claim(code);
       return result;
@@ -34,6 +42,7 @@ const redeemCode = async (info: RedeemInfo): Promise<IRedeemCode | null> => {
       const zzz = new ZenlessZoneZero({
         cookie: JSON.parse(cookie),
         uid: gameInfo.uid,
+        lang: LanguageEnum.VIETNAMESE,
       });
       const result = await zzz.redeem.claim(code);
       return result;
@@ -45,7 +54,7 @@ const redeemCode = async (info: RedeemInfo): Promise<IRedeemCode | null> => {
 };
 
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
-  await interaction.deferReply();
+  await interaction.deferReply({ ephemeral: true });
   const game = (interaction as ChatInputCommandInteraction).options.getString('game', true);
   const code = (interaction as ChatInputCommandInteraction).options.getString('code', true);
   const userGameInfo = await Cookies.findAll({

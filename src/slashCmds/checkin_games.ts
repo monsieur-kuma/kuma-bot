@@ -5,7 +5,7 @@ import { GAMES } from 'utils';
 import { checkInGame } from 'utils/common';
 
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
-  await interaction.deferReply();
+  await interaction.deferReply({ ephemeral: true });
   const userCookies = await Cookies.findAll({ where: { userId: interaction.user.id } });
   if (!userCookies.length) {
     await interaction.editReply('No linked Hoyolab account found');

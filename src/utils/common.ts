@@ -79,7 +79,7 @@ export const checkInGame = async (
       const genshin = new GenshinImpact({
         cookie: JSON.parse(cookie) as ICookie,
         uid,
-        lang: LanguageEnum.ENGLISH,
+        lang: LanguageEnum.VIETNAMESE,
       });
       const result = await genshin.daily.claim();
       return result;
@@ -88,7 +88,7 @@ export const checkInGame = async (
       const hi3 = new HonkaiImpact({
         cookie: JSON.parse(cookie) as ICookie,
         uid,
-        lang: LanguageEnum.ENGLISH,
+        lang: LanguageEnum.VIETNAMESE,
       });
       const result = await hi3.daily.claim();
       return result;
@@ -97,7 +97,7 @@ export const checkInGame = async (
       const hsr = new HonkaiStarRail({
         cookie: JSON.parse(cookie) as ICookie,
         uid,
-        lang: LanguageEnum.ENGLISH,
+        lang: LanguageEnum.VIETNAMESE,
       });
       const result = await hsr.daily.claim();
       return result;
@@ -106,7 +106,7 @@ export const checkInGame = async (
       const zzz = new ZenlessZoneZero({
         cookie: JSON.parse(cookie) as ICookie,
         uid,
-        lang: LanguageEnum.ENGLISH,
+        lang: LanguageEnum.VIETNAMESE,
       });
       const result = await zzz.daily.claim();
       return result;

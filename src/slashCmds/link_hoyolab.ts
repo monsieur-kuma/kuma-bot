@@ -7,7 +7,7 @@ import {
   TextInputBuilder,
   TextInputStyle,
 } from 'discord.js';
-import { Hoyolab } from 'michos_api';
+import { Hoyolab, LanguageEnum } from 'michos_api';
 import { Cookies } from 'models';
 import type { SlashCmd } from 'types';
 import { GAMES } from 'utils';
@@ -45,7 +45,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
           await modalInteraction.reply('Invalid cookie provided');
           return;
         }
-        const hoyolab = new Hoyolab({ cookie });
+        const hoyolab = new Hoyolab({ cookie, lang: LanguageEnum.VIETNAMESE });
         const gameRecords = await hoyolab.gameRecordCard();
         const gameInfo: CustomObject<{ uid: number; server: string; name: string }> = {};
         const results: { name: string; value: string }[] = [];
