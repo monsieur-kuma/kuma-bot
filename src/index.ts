@@ -36,7 +36,7 @@ const client = new Client({
   const extenFile = process.env.NODE_ENV === 'development' ? 'ts' : 'js';
 
   const smoothPath = (full: string, dirName: string) => {
-    const dirs = full.replace(`.${extenFile}`, '').split('\\');
+    const dirs = full.replace(`.${extenFile}`, '').split(path.sep);
     const smooth = _.dropWhile(dirs, (e) => e !== dirName);
     return path.join(...smooth);
   };
