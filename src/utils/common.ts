@@ -26,7 +26,7 @@ export const validCookie = (cookie: string) => {
 };
 
 export const parseCookie = (cookie: string): ICookie | null => {
-  if (cookie.includes('{') && cookie.includes('}')) {
+  if (cookie.startsWith('{') && cookie.endsWith('}')) {
     return JSON.parse(cookie);
   }
   if (!validCookie(cookie)) {
@@ -39,8 +39,8 @@ export const parseCookie = (cookie: string): ICookie | null => {
       const camelCaseKey = toCamelCase(key.trim());
       const decodedValue = decodeURIComponent(value).trim();
       cookies.set(camelCaseKey, decodedValue);
-      if (['ltuid', 'account_id', 'account_id_v2'].includes(key)) {
-        cookies.set(key, parseInt(cookies.get(key), 10));
+      if (['ltuid', 'ltuidV2', 'accountId', 'accountIdV2'].includes(camelCaseKey)) {
+        cookies.set(camelCaseKey, parseInt(cookies.get(camelCaseKey), 10));
       } else if (key === 'mi18nLang') {
         cookies.set(key, decodedValue || LanguageEnum.ENGLISH);
       }
