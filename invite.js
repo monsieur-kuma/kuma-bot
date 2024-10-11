@@ -2,10 +2,7 @@ require('dotenv-flow').config({
   node_env: 'development',
 });
 
-// Read Messages/View Channels
 // Send Messages
-// Attach Files
-// Mention Everyone
 // Use Slash Commands
 const PERMISSIONS = 2147486720;
 
