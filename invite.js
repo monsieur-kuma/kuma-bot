@@ -7,7 +7,7 @@ require('dotenv-flow').config({
 // Attach Files
 // Mention Everyone
 // Use Slash Commands
-const PERMISSIONS = 2147650560;
+const PERMISSIONS = 2147486720;
 
 // bot
 const SCPOPE = 'bot';
