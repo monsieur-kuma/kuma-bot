@@ -6,8 +6,8 @@ import { checkInGame } from 'utils/common';
 
 export default (client: Client) => {
   const rule = new RecurrenceRule();
-  rule.hour = 0;
-  rule.minute = 0;
+  rule.hour = 8;
+  rule.minute = 26;
   rule.tz = 'Asia/Jakarta';
 
   scheduleJob(rule, async () => {
@@ -22,12 +22,21 @@ export default (client: Client) => {
               const { gameInfo, cookie } = userCookie;
               await Promise.all(
                 Object.entries(gameInfo).map(async ([gameId, info]) => {
-                  const status = await checkInGame(cookie, gameId, info);
-                  results.push({
-                    name: GAMES[gameId as keyof typeof GAMES].name,
-                    value:
-                      status?.status === 'OK' ? 'Check in successful' : status?.status ?? 'Failed',
-                  });
+                  try {
+                    const status = await checkInGame(cookie, gameId, info);
+                    results.push({
+                      name: GAMES[gameId as keyof typeof GAMES].name,
+                      value:
+                        status?.status === 'OK'
+                          ? 'Check in successful'
+                          : status?.status ?? 'Failed',
+                    });
+                  } catch ({ message }: any) {
+                    results.push({
+                      name: GAMES[gameId as keyof typeof GAMES].name,
+                      value: message,
+                    });
+                  }
                 })
               );
             })
