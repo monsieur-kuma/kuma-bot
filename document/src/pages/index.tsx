@@ -14,7 +14,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <img src="/img/logo.png" alt="Kuma Bot" className={styles.logo} />
+        <img src="/kuma-bot/img/logo.png" alt="Kuma Bot" className={styles.logo} />
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>

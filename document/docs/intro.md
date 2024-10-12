@@ -2,46 +2,43 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Tutorial
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the tutorial for setting up and using the Kuma Bot. This guide will walk you through the steps required to get your bot up and running.
 
-## Getting Started
+## Invite link
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```
+https://discord.com/oauth2/authorize?client_id=1123436187437248533
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Link Hoyolab Account
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+**Note**: `You can link to multiple Hoyolab accounts. This makes it more convenient to automatically checkin and redeem codes.`
 
-## Start your site
+1. **Get hoyolab cookies**
 
-Run the development server:
+- Use extentions [Cookie-editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) to get cookies
+- After installation, go to the [Hoyolab homepage](https://www.hoyolab.com/home), click on the Cookie-editor icon in the upper left corner of the browser (if you don't see it, click on the extension icon in the right corner of the browser).
+- Select in the bottom corner select `Export -> Header` String to get the cookies
+- Finally, You have copied cookies
 
-```bash
-cd my-website
-npm run start
-```
+2. **Link to Bot**
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+- Return to discord and use slash command `/link_hoyolab` and select the game you want to link with this hoyolab account.
+- After you press enter modal will appear, paste the cookie into the HOYOLAB COOKIE box and click send.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+## Usage
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Once the bot is running, you can interact with it through your preferred platform. Use the following commands to get started:
+
+- `/checkin_game` - Checkin all game you have linked
+- `/redeem_code` - Redeem a code for a hoyolab games
+- `/unlink_hoyolab` - Unlink hoyolab account
+
+For more detailed information, refer to the [documentation](Commands/autoCheckin).
+
+Happy botting!
+
+
+

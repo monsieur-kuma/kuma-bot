@@ -6,7 +6,7 @@ const config: Config = {
   title: 'Kuma Bot',
   tagline:
     'A bot for Discord supporting various features: checkin, remdem code, etc. for Hoyovert Game.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.ico',
 
   // Set the production url of your site here
   url: 'https://monsieur-kuma.github.io',
