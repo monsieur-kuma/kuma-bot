@@ -6,8 +6,8 @@ import { checkInGame } from 'utils/common';
 
 export default (client: Client) => {
   const rule = new RecurrenceRule();
-  rule.hour = 8;
-  rule.minute = 26;
+  rule.hour = 0;
+  rule.minute = 0;
   rule.tz = 'Asia/Jakarta';
 
   scheduleJob(rule, async () => {
