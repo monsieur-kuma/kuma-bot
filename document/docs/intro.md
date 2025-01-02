@@ -6,11 +6,14 @@ sidebar_position: 1
 
 Welcome to the tutorial for setting up and using the Kuma Bot. This guide will walk you through the steps required to get your bot up and running.
 
+Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+
 ## Invite link
 
 ```
 https://discord.com/oauth2/authorize?client_id=1123436187437248533
 ```
+Or Join my discord server to use the bot: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
 ## Link Hoyolab Account
 

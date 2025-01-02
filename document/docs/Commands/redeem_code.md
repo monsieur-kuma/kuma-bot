@@ -24,5 +24,6 @@ The `redeem_code` command show you the guide to redeem a code in game
   ```
 
 ### Troubleshooting
+- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
 - If the command is not working as expected, please let me you. i will fix this

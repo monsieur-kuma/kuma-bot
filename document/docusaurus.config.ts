@@ -93,7 +93,7 @@ const config: Config = {
             },
             {
               label: 'Discord',
-              href: 'https://discord.com/users/776054010414497823',
+              href: 'https://discord.gg/Ykq6qgsHSh',
             },
             {
               label: 'Email',

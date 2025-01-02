@@ -43,6 +43,7 @@ The `auto_checkin` command allows you to automatically check in at specified int
 - The `auto_checkin` command must be running in the background to function correctly.
 
 ### Troubleshooting
+- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
 - If the command is not working as expected, please let me you. i will fix this
 
