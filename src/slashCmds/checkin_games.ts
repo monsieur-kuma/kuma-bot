@@ -11,19 +11,34 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
     await interaction.editReply('No linked Hoyolab account found');
     return;
   }
-  const results: { name: string; value: string }[] = [];
+  const checkedGames: CustomObject<string[]> = {};
   await Promise.all(
     userCookies.map(async (userCookie) => {
       const { gameInfo, cookie } = userCookie;
       await Promise.all(
         Object.entries(gameInfo).map(async ([gameId, info]) => {
-          const status = await checkInGame(cookie, gameId, info);
-          results.push({
-            name: GAMES[gameId as keyof typeof GAMES].name,
-            value: status?.status || 'Failed',
-          });
+          if (!checkedGames[gameId]) checkedGames[gameId] = [];
+          let textRespone = `- ${info.name} (${info.uid}): `;
+          try {
+            const status = await checkInGame(cookie, gameId, info);
+            if (status?.status === 'OK') {
+              textRespone += 'Check in successful';
+            } else {
+              textRespone += status?.status ?? 'Failed';
+            }
+          } catch ({ message }: any) {
+            textRespone += message;
+          }
+          checkedGames[gameId].push(textRespone);
         })
       );
+    })
+  );
+
+  const results: { name: string; value: string }[] = Object.entries(checkedGames).map(
+    ([gameId, value]) => ({
+      name: GAMES[gameId as keyof typeof GAMES].name,
+      value: value.join('\n'),
     })
   );
 

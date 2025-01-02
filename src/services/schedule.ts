@@ -16,31 +16,37 @@ export default (client: Client) => {
       allUser.map(async ({ userId }) => {
         const userCookies = await Cookies.findAll({ where: { userId } });
         if (userCookies.length) {
-          const results: { name: string; value: string }[] = [];
+          const checkedGames: CustomObject<string[]> = {};
           await Promise.all(
             userCookies.map(async (userCookie) => {
               const { gameInfo, cookie } = userCookie;
               await Promise.all(
                 Object.entries(gameInfo).map(async ([gameId, info]) => {
+                  if (!checkedGames[gameId]) checkedGames[gameId] = [];
+                  let textRespone = `- ${info.name} (${info.uid}): `;
                   try {
                     const status = await checkInGame(cookie, gameId, info);
-                    results.push({
-                      name: GAMES[gameId as keyof typeof GAMES].name,
-                      value:
-                        status?.status === 'OK'
-                          ? 'Check in successful'
-                          : status?.status ?? 'Failed',
-                    });
+                    if (status?.status === 'OK') {
+                      textRespone += 'Check in successful';
+                    } else {
+                      textRespone += status?.status ?? 'Failed';
+                    }
                   } catch ({ message }: any) {
-                    results.push({
-                      name: GAMES[gameId as keyof typeof GAMES].name,
-                      value: message,
-                    });
+                    textRespone += message;
                   }
+                  checkedGames[gameId].push(textRespone);
                 })
               );
             })
           );
+
+          const results: { name: string; value: string }[] = Object.entries(checkedGames).map(
+            ([gameId, value]) => ({
+              name: GAMES[gameId as keyof typeof GAMES].name,
+              value: value.join('\n'),
+            })
+          );
+
           const embed = new EmbedBuilder()
             .setColor('Random')
             .setTitle('Auto Checkin status')
