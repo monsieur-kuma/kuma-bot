@@ -65,11 +65,11 @@ const config: Config = {
         },
         { to: '/terms-of-service', label: 'Terms of Service', position: 'left' },
         { to: '/privacy-policy', label: 'Privacy Policy', position: 'left' },
-        {
-          href: 'https://github.com/monsieur-kuma/kuma-bot',
-          label: 'GitHub',
-          position: 'right',
-        },
+        // {
+        //   href: 'https://github.com/monsieur-kuma/kuma-bot',
+        //   label: 'GitHub',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {
@@ -101,15 +101,15 @@ const config: Config = {
             },
           ],
         },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/vanlinh1602',
-            },
-          ],
-        },
+        // {
+        //   title: 'More',
+        //   items: [
+        //     {
+        //       label: 'GitHub',
+        //       href: 'https://github.com/vanlinh1602',
+        //     },
+        //   ],
+        // },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Kuma Bot, Inc. Built with Docusaurus.`,
     },
