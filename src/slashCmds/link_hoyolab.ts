@@ -16,14 +16,16 @@ import { parseCookie } from 'utils/common';
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
   const options = interaction.options.data;
   if (!options.length) {
-    await interaction.reply('Please select a game to link');
+    await interaction.reply('Vui lòng chọn các trò chơi muốn liên kết');
     return;
   }
-  const modal = new ModalBuilder().setTitle('Link Hoyolab Account').setCustomId('link_hoyolab');
+  const modal = new ModalBuilder()
+    .setTitle('Liên kết tài khoản Hoyolab')
+    .setCustomId('link_hoyolab');
 
   const cookieInput = new TextInputBuilder()
-    .setLabel('Hoyolab Cookie')
-    .setPlaceholder('Paste your Hoyolab cookie here')
+    .setLabel('Cookie Hoyolab')
+    .setPlaceholder('Dán cookie Hoyolab của bạn vào đây')
     .setCustomId('cookie')
     .setStyle(TextInputStyle.Paragraph)
     .setRequired(true);
@@ -42,7 +44,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
         const userInput = modalInteraction.components[0].components[0].value;
         const cookie = parseCookie(userInput);
         if (!cookie) {
-          await modalInteraction.reply('Invalid cookie provided');
+          await modalInteraction.reply('Cookie không hợp lệ');
           return;
         }
         const hoyolab = new Hoyolab({ cookie, lang: LanguageEnum.VIETNAMESE });
@@ -67,7 +69,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
         Cookies.create({ userId: interaction.user.id, cookie: JSON.stringify(cookie), gameInfo });
         const embed = new EmbedBuilder()
           .setColor('Random')
-          .setTitle('Linked Hoyolab Account')
+          .setTitle('Liên kết thành công')
           .addFields(results)
           .setTimestamp();
         await modalInteraction.reply({ embeds: [embed], ephemeral: true });
@@ -75,7 +77,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
   } catch (error) {
     Logger.error(error);
     await interaction.reply({
-      content: 'An error occurred while linking your account',
+      content: 'Đã xảy ra lỗi khi liên kết tài khoản của bạn',
       ephemeral: true,
     });
   }
@@ -83,10 +85,10 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
 export const data: SlashCmd['data'] = {
   name: 'link_hoyolab',
-  description: 'Link your Hoyolab account',
+  description: 'Liên kết tài khoản Hoyolab của bạn',
   options: Object.entries(GAMES).map(([key, value]) => ({
     name: key,
-    description: `Link account ${value.name}`,
+    description: `Liên kết tài khoản ${value.name}`,
     type: 5,
   })),
   defaultPermission: true,

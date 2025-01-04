@@ -23,16 +23,18 @@ export default (client: Client) => {
               await Promise.all(
                 Object.entries(gameInfo).map(async ([gameId, info]) => {
                   if (!checkedGames[gameId]) checkedGames[gameId] = [];
-                  let textRespone = `- ${info.name} (${info.uid}): `;
+                  let textRespone = `- **${info.name} (${info.uid})**: `;
                   try {
                     const status = await checkInGame(cookie, gameId, info);
                     if (status?.status === 'OK') {
                       textRespone += 'Check in successful';
                     } else {
                       textRespone += status?.status ?? 'Failed';
+                      Logger.error(status);
                     }
                   } catch ({ message }: any) {
                     textRespone += message;
+                    Logger.error(message);
                   }
                   checkedGames[gameId].push(textRespone);
                 })

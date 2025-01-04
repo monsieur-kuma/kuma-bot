@@ -32,7 +32,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
 export const data: SlashCmd['data'] = {
   name: 'guide_link',
-  description: 'Guide link for the hoyolab cookie',
+  description: 'Hướng dẫn liên kết tài khoản Hoyolab với bot',
   options: [],
   defaultPermission: true,
 };

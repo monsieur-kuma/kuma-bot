@@ -8,27 +8,27 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
   if (!signCheckin) {
     if (cancel) {
       await interaction.reply({
-        content: 'You are not registered for auto checkin',
+        content: 'Bạn chưa đăng ký tự động điểm danh',
         ephemeral: true,
       });
     } else {
       await AutoCheckin.create({ userId: interaction.user.id });
       await interaction.reply({
-        content: 'Registered for auto checkin successfully',
+        content: 'Đăng ký tự động điểm danh thành công',
         ephemeral: true,
       });
     }
   } else {
     if (!cancel) {
       await interaction.reply({
-        content: 'You are already registered for auto checkin',
+        content: 'Bạn đã đăng ký tự động điểm danh rồi',
         ephemeral: true,
       });
       return;
     }
     await AutoCheckin.destroy({ where: { userId: interaction.user.id } });
     await interaction.reply({
-      content: 'Unregistered for auto checkin successfully',
+      content: 'Hủy đăng ký tự động điểm danh thành công',
       ephemeral: true,
     });
   }
@@ -36,11 +36,11 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
 export const data: SlashCmd['data'] = {
   name: 'auto_checkin',
-  description: 'Automatically check in games you have linked',
+  description: 'Tự động điểm danh các trò chơi bạn đã liên kết',
   options: [
     {
       name: 'cancel',
-      description: 'Cancel auto checkin',
+      description: 'Hủy tự động điểm danh',
       type: 5,
     },
   ],

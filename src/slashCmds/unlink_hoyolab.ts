@@ -15,7 +15,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
   await interaction.deferReply({ ephemeral: true });
   const userCookies = await Cookies.findAll({ where: { userId: interaction.user.id } });
   if (!userCookies.length) {
-    await interaction.editReply('You have not linked your Hoyolab account');
+    await interaction.editReply('Bạn chưa liên kết tài khoản Hoyolab của mình');
     return;
   }
 
@@ -31,28 +31,28 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
       allGames.push(`${GAMES[gameId as keyof typeof GAMES].name} - ${info.name} - ${info.uid}`);
     });
     results.push({
-      name: `Account ${index + 1}`,
+      name: `Tài khoản ${index + 1}`,
       value: allGames.join('\n'),
     });
 
     options.push(
       new StringSelectMenuOptionBuilder()
-        .setLabel(`Account ${index + 1}`)
+        .setLabel(`Tài khoản ${index + 1}`)
         .setValue(`${id}`)
-        .setDescription(`Select account ${index + 1}`)
+        .setDescription(`Chọn tài khoản ${index + 1}`)
     );
   });
 
   const embed = new EmbedBuilder()
-    .setTitle('Unlink Hoyolab Account')
-    .setDescription('Select the account you want to unlink')
+    .setTitle('Hủy liên kết tài khoản Hoyolab')
+    .setDescription('Chọn tài khoản bạn muốn hủy liên kết')
     .addFields(results)
     .setTimestamp();
 
   const selectMenu = new StringSelectMenuBuilder()
     .setCustomId('select_unlink')
     .addOptions(options)
-    .setPlaceholder('Select an account to unlink');
+    .setPlaceholder('Chọn tài khoản để hủy liên kết');
 
   const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(selectMenu);
 
@@ -67,7 +67,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
       const selectedId = (selectInteraction as StringSelectMenuInteraction).values[0];
       Cookies.destroy({ where: { id: Number(selectedId) } });
       await interaction.editReply({
-        content: 'Unlinked successfully',
+        content: 'Hủy liên kết thành công',
         embeds: [],
         components: [],
       });
@@ -76,7 +76,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
 export const data: SlashCmd['data'] = {
   name: 'unlink_hoyolab',
-  description: 'Un Link your Hoyolab account',
+  description: 'Hủy liên kết tài khoản Hoyolab của bạn',
   options: [],
   defaultPermission: true,
 };

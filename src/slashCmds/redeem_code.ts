@@ -64,13 +64,13 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
   });
 
   if (!userGameInfo.length) {
-    await interaction.editReply('You have not linked any Hoyolab accounts');
+    await interaction.editReply('Bạn chưa liên kết tài khoản Hoyolab nào');
     return;
   }
 
   const linkedGame = userGameInfo.filter((info) => info.gameInfo[game]);
   if (!linkedGame.length) {
-    await interaction.editReply('You have not linked this game');
+    await interaction.editReply('Bạn chưa liên kết trò chơi này');
     return;
   }
 
@@ -91,7 +91,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
   const embed = new EmbedBuilder()
     .setColor('Random')
-    .setTitle(`Redeem code for ${GAMES[game as keyof typeof GAMES].name}`)
+    .setTitle(`Nhận code game ${GAMES[game as keyof typeof GAMES].name}`)
     .addFields(results)
     .setTimestamp();
   await interaction.editReply({ embeds: [embed] });
@@ -99,13 +99,13 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
 export const data: SlashCmd['data'] = {
   name: 'redeem_code',
-  description: 'Redeem a code for a hoyolab games',
+  description: 'Nhận code cho các trò chơi Hoyolab',
   options: [
     {
       name: 'game',
       type: 3,
       required: true,
-      description: `Select the game you'd like to redeem the code for`,
+      description: 'Chọn trò chơi bạn muốn nhận code',
       choices: [
         {
           name: 'Genshin Impact',
@@ -125,7 +125,7 @@ export const data: SlashCmd['data'] = {
       name: 'code',
       type: 3,
       required: true,
-      description: 'The code you want to redeem',
+      description: 'Mã code bạn muốn nhận',
     },
   ],
   defaultPermission: true,
