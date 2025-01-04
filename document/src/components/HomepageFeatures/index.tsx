@@ -29,7 +29,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <Translate id="homepage.focusOnWhatMatters.description">
         Kuma Bot được thiết kế để dễ sử dụng và tập trung vào những gì quan trọng. Đây là một bot
-        Discord giúp bạn kiểm tra và đổi mã trong trò chơi Hoyovert.
+        Discord giúp bạn điểm danh và đổi mã trong trò chơi Hoyoverse.
       </Translate>
     ),
   },

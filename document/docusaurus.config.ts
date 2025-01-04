@@ -5,7 +5,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const config: Config = {
   title: 'Kuma Bot',
   tagline:
-    'Một Bot dành cho Discord hỗ trợ nhiều tính năng khác nhau: Điểm danh, nhận code,... cho Hoyovert Game.',
+    'Một Bot dành cho Discord hỗ trợ nhiều tính năng khác nhau: Điểm danh, nhận code,... cho game của hoyoverse',
   favicon: 'img/logo.ico',
 
   // Set the production url of your site here
