@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-undef */
+import Translate, { translate } from '@docusaurus/Translate';
 import Heading from '@theme/Heading';
 import clsx from 'clsx';
 
@@ -13,24 +14,31 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    description: <>Kuma Bot is a Discord bot that is easy to use and has a lot of features.</>,
-  },
-  {
-    title: 'Focus on What Matters',
+    title: translate({ message: 'Dễ sử dụng', id: 'homepage.easyToUse' }),
     description: (
-      <>
-        Kuma Bot is designed to be easy to use and focus on what matters. It is a Discord bot
-        helping you to checkin and remdem code in Hoyovert Game.
-      </>
+      <Translate id="homepage.easyToUse.description">
+        Kuma Bot là một bot Discord dễ sử dụng và có nhiều tính năng.
+      </Translate>
     ),
   },
   {
-    title: 'Powered by Discord.js',
+    title: translate({
+      message: 'Tập trung tiện nghi',
+      id: 'homepage.focusOnWhatMatters',
+    }),
     description: (
-      <>
-        Kuma Bot is powered by Discord.js, a powerful library for interacting with the Discord API.
-      </>
+      <Translate id="homepage.focusOnWhatMatters.description">
+        Kuma Bot được thiết kế để dễ sử dụng và tập trung vào những gì quan trọng. Đây là một bot
+        Discord giúp bạn kiểm tra và đổi mã trong trò chơi Hoyovert.
+      </Translate>
+    ),
+  },
+  {
+    title: translate({ message: 'Xây dựng bằng Discord.js', id: 'homepage.powered' }),
+    description: (
+      <Translate id="homepage.powered.description">
+        Kuma Bot được hỗ trợ bởi Discord.js, một thư viện mạnh mẽ để tương tác với API của Discord.
+      </Translate>
     ),
   },
 ];

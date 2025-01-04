@@ -2,46 +2,43 @@
 sidebar_position: 1
 ---
 
-# Tutorial
+# Hướng dẫn
 
-Welcome to the tutorial for setting up and using the Kuma Bot. This guide will walk you through the steps required to get your bot up and running.
+Chào mừng bạn đến với hướng dẫn thiết lập và sử dụng Kuma Bot. Hướng dẫn này sẽ giúp bạn từng bước để khởi động và sử dụng bot.
 
-Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+Tham gia máy chủ discord nếu bạn cần giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
-## Invite link
+## Liên kết mời
 
 ```
 https://discord.com/oauth2/authorize?client_id=1123436187437248533
 ```
-Or Join my discord server to use the bot: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+Hoặc tham gia máy chủ discord [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh) để sử dụng bot.
 
-## Link Hoyolab Account
+## Liên kết tài khoản Hoyolab
 
-**Note**: `You can link to multiple Hoyolab accounts. This makes it more convenient to automatically checkin and redeem codes.`
+**Lưu ý**: `Bạn có thể liên kết với nhiều tài khoản Hoyolab. Điều này giúp bạn tự động checkin và đổi mã dễ dàng hơn.`
 
-1. **Get hoyolab cookies**
+1. **Lấy cookies hoyolab**
 
-- Use extentions [Cookie-editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) to get cookies
-- After installation, go to the [Hoyolab homepage](https://www.hoyolab.com/home), click on the Cookie-editor icon in the upper left corner of the browser (if you don't see it, click on the extension icon in the right corner of the browser).
-- Select in the bottom corner select `Export -> Header` String to get the cookies
-- Finally, You have copied cookies
+- Sử dụng tiện ích [Cookie-editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) để lấy cookies
+- Sau khi cài đặt, truy cập trang chủ [Hoyolab](https://www.hoyolab.com/home), nhấp vào biểu tượng Cookie-editor ở góc trên bên trái của trình duyệt (nếu bạn không thấy, nhấp vào biểu tượng tiện ích ở góc phải của trình duyệt).
+- Chọn ở góc dưới chọn `Export -> Header String` để lấy cookies
+- Cookie sẽ được tự động sao chép vào clipboard
 
-2. **Link to Bot**
+2. **Liên kết với Bot**
 
-- Return to discord and use slash command `/link_hoyolab` and select the game you want to link with this hoyolab account.
-- After you press enter modal will appear, paste the cookie into the HOYOLAB COOKIE box and click send.
+- Quay lại discord và sử dụng lệnh `/link_hoyolab` và chọn trò chơi bạn muốn liên kết với tài khoản hoyolab này.
+- Sau khi bạn nhấn enter, một modal sẽ xuất hiện, dán cookie vào ô HOYOLAB COOKIE và nhấp gửi.
 
-## Usage
+## Sử dụng
 
-Once the bot is running, you can interact with it through your preferred platform. Use the following commands to get started:
+Khi bot đã chạy, bạn có thể tương tác với nó thông qua nền tảng ưa thích của mình. Sử dụng các lệnh sau để bắt đầu:
 
-- `/checkin_game` - Checkin all game you have linked
-- `/redeem_code` - Redeem a code for a hoyolab games
-- `/unlink_hoyolab` - Unlink hoyolab account
+- `/checkin_game` - Checkin tất cả các trò chơi bạn đã liên kết
+- `/redeem_code` - Đổi mã code cho các trò chơi hoyolab
+- `/unlink_hoyolab` - Hủy liên kết tài khoản hoyolab
 
-For more detailed information, refer to the [documentation](Commands/autoCheckin).
+Để biết thêm thông tin chi tiết, tham khảo [tài liệu](Commands/autoCheckin).
 
 Happy botting!
-
-
-

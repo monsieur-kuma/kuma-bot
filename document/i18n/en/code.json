@@ -1,0 +1,33 @@
+{
+  "document.btn": {
+    "message": "Kuma Bot documentation"
+  },
+
+  "homepage.description": {
+    "message": "A bot for Discord supporting various features: checkin, remdem code, etc. for Hoyovert Game."
+  },
+
+  "homepage.easyToUse": {
+    "message": "Easy to Use"
+  },
+
+  "homepage.easyToUse.description": {
+    "message": "Kuma Bot is a Discord bot that is easy to use and has a lot of features."
+  },
+
+  "homepage.focusOnWhatMatters": {
+    "message": "Focus on What Matters"
+  },
+
+  "homepage.focusOnWhatMatters.description": {
+    "message": "Kuma Bot is designed to be easy to use and focus on what matters. It is a Discord bot helping you to checkin and remdem code in Hoyovert Game."
+  },
+
+  "homepage.powered": {
+    "message": "Powered by Discord.js"
+  },
+
+  "homepage.powered.description": {
+    "message": "Kuma Bot is powered by Discord.js, a powerful library for interacting with the Discord API."
+  }
+}

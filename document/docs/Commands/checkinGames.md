@@ -1,30 +1,30 @@
 # Checkin Games
 
-## Tutorial for `checkin_games` Command
+## Hướng dẫn cho lệnh `checkin_games`
 
-The `checkin_games` command allows you to checkin all game you linked with account
+Lệnh `checkin_games` cho phép bạn checkin tất cả các trò chơi bạn đã liên kết với tài khoản
 
-### Usage
+### Cách sử dụng
 
 ```bash
 /checkin_games
 ```
 
-### Options
+### Tùy chọn
 
-- No optional
+- Không có tùy chọn
 
-### Examples
+### Ví dụ
 
-1. **Basic Usage:**
+1. **Cách sử dụng cơ bản:**
 
   ```bash
   /checkin_games
   ```
 
-### Troubleshooting
-- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+### Khắc phục sự cố
+- Tham gia máy chủ discord nếu bạn muốn được giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
-- If the command is not working as expected, please let me you. i will fix this
+- Nếu lệnh không hoạt động như mong đợi, vui lòng cho tôi biết. Tôi sẽ sửa lỗi này
 
-By following this tutorial, you should be able to effectively use the `auto_checkin` command to automate your check-ins.
+Bằng cách làm theo hướng dẫn này, bạn sẽ có thể sử dụng lệnh `auto_checkin` để tự động hóa việc check-in của mình một cách hiệu quả.

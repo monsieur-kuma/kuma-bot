@@ -5,7 +5,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const config: Config = {
   title: 'Kuma Bot',
   tagline:
-    'A bot for Discord supporting various features: checkin, remdem code, etc. for Hoyovert Game.',
+    'Một Bot dành cho Discord hỗ trợ nhiều tính năng khác nhau: Điểm danh, nhận code,... cho Hoyovert Game.',
   favicon: 'img/logo.ico',
 
   // Set the production url of your site here
@@ -26,8 +26,13 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'vi',
+    locales: ['vi', 'en'],
+    localeConfigs: {
+      en: {
+        htmlLang: 'en-GB',
+      },
+    },
   },
 
   presets: [
@@ -70,6 +75,10 @@ const config: Config = {
         //   label: 'GitHub',
         //   position: 'right',
         // },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
       ],
     },
     footer: {

@@ -1,28 +1,28 @@
 # Link Hoyolab
 
-## Tutorial for `link_hoylab` Command
+## Hướng dẫn cho lệnh `link_hoylab`
 
-The `link_hoylab` command help you link with hoyolab account
+Lệnh `link_hoylab` giúp bạn liên kết với tài khoản hoyolab
 
-### Usage
+### Cách sử dụng
 
 ```bash
-/link_hoylab [games]
+/link_hoylab [trò chơi]
 ```
 
-### Options
+### Tùy chọn
 
-- `games`: game you want to link. You can select multiple game
+- `trò chơi`: trò chơi bạn muốn liên kết. Bạn có thể chọn nhiều trò chơi
 
-### Examples
+### Ví dụ
 
-1. **Basic Usage:**
+1. **Cách sử dụng cơ bản:**
 
   ```bash
-  /link_hoylab [game-you-want-to-link]
+  /link_hoylab [trò-chơi-bạn-muốn-liên-kết]
   ```
 
-### Troubleshooting
-- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+### Khắc phục sự cố
+- Tham gia máy chủ discord nếu bạn muốn được giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
-- If the command is not working as expected, please let me you. i will fix this
+- Nếu lệnh không hoạt động như mong đợi, vui lòng cho tôi biết. Tôi sẽ sửa lỗi này

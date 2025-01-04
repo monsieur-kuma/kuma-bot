@@ -1,28 +1,28 @@
 # Guide Link
 
-## Tutorial for `guide_link` Command
+## Hướng Dẫn Sử Dụng Lệnh `guide_link`
 
-The `guide_link` command show you the guide to link hoyolab account
+Lệnh `guide_link` hiển thị hướng dẫn liên kết tài khoản hoyolab
 
-### Usage
+### Cách Sử Dụng
 
 ```bash
 /guide_link
 ```
 
-### Options
+### Tùy Chọn
 
-- No optional
+- Không có tùy chọn
 
-### Examples
+### Ví Dụ
 
-1. **Basic Usage:**
+1. **Cách Sử Dụng Cơ Bản:**
 
   ```bash
   /guide_link
   ```
 
-### Troubleshooting
-- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+### Khắc Phục Sự Cố
+- Tham gia máy chủ discord nếu bạn muốn được giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
-- If the command is not working as expected, please let me you. i will fix this
+- Nếu lệnh không hoạt động như mong đợi, vui lòng cho tôi biết. Tôi sẽ sửa lỗi này

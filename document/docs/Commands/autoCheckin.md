@@ -1,50 +1,45 @@
 # Auto Checkin
 
-## Tutorial for `auto_checkin` Command
+## Hướng Dẫn Sử Dụng Lệnh `auto_checkin`
 
-The `auto_checkin` command allows you to automatically check in at specified intervals. This can be useful for keeping track of your activities or ensuring regular updates.
+Lệnh `auto_checkin` cho phép bạn tự động điểm vào các khoảng thời gian đã định (0h mỗi ngày). Điều này có thể hữu ích để theo dõi các hoạt động của bạn hoặc đảm bảo cập nhật thường xuyên.
 
-### Usage
+### Cách Sử Dụng
 
 ```bash
 /auto_checkin [options]
 ```
 
-### Options
+### Tùy Chọn (Options)
 
-- `cancel`: cancel automation checkin
+- `cancel`: hủy tự động checkin
 
-### Examples
+### Ví Dụ
 
-1. **Basic Usage:**
-
-  ```bash
-  /auto_checkin
-  ```
-
-  This command will auto check in every game you linked with hoyolab account at 0am.
-
-2. **Unsubscribe automation checkin:**
+1. **Sử Dụng Cơ Bản:**
 
   ```bash
   /auto_checkin
   ```
-  Select options `cancel`
 
-  The command shoud be look like:
+  Lệnh này sẽ tự động check in mỗi trò chơi bạn đã liên kết với tài khoản hoyolab vào lúc 0 giờ.
+
+2. **Hủy Tự Động Checkin:**
+
+  ```bash
+  /auto_checkin
+  ```
+  Chọn tùy chọn `cancel`
+
+  Lệnh sẽ trông như sau:
 
   ```bash
   /auto_checkin cancel true
   ```
 
+### Khắc Phục Sự Cố
+- Tham gia server discord nếu bạn muốn được giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
-### Notes
+- Nếu lệnh không hoạt động như mong đợi, vui lòng cho tôi biết. Tôi sẽ sửa lỗi này.
 
-- The `auto_checkin` command must be running in the background to function correctly.
-
-### Troubleshooting
-- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
-
-- If the command is not working as expected, please let me you. i will fix this
-
-By following this tutorial, you should be able to effectively use the `auto_checkin` command to automate your check-ins.
+Bằng cách làm theo hướng dẫn này, bạn sẽ có thể sử dụng lệnh `auto_checkin` một cách hiệu quả để tự động hóa việc check-in của mình.

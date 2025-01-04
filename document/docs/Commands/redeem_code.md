@@ -1,29 +1,30 @@
-# Redeem code
+# Redeem Code
 
-## Tutorial for `redeem_code` Command
+## Hướng dẫn cho lệnh `redeem_code`
 
-The `redeem_code` command show you the guide to redeem a code in game
+Lệnh `redeem_code` hướng dẫn bạn cách đổi mã trong trò chơi
 
-### Usage
+### Cách sử dụng
 
 ```bash
 /redeem_code [game] [code]
 ```
 
-### Options
+### Tùy chọn
 
-- `game`: Game you want to redeem code
-- `code`: Code reward
+- `game`: Trò chơi bạn muốn đổi mã
+- `code`: Mã phần thưởng
 
-### Examples
+### Ví dụ
 
-1. **Basic Usage:**
+1. **Cách sử dụng cơ bản:**
 
   ```bash
   /redeem_code [game: hsr] [code: STARRAILGIFT]
   ```
 
-### Troubleshooting
-- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+### Khắc phục sự cố
+- Tham gia máy chủ discord nếu bạn cần trợ giúp hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
-- If the command is not working as expected, please let me you. i will fix this
+- Nếu lệnh không hoạt động như mong đợi, vui lòng cho tôi biết. Tôi sẽ sửa lỗi này
+

@@ -1,29 +1,30 @@
-# Unlink hoyolab
+# Unlink_hoyolab
 
-## Tutorial for `unlink_hoyolab` Command
+## Hướng dẫn cho lệnh `unlink_hoyolab`
 
-The `unlink_hoyolab` command show you the guide to unlink hoyolab account
+Lệnh `unlink_hoyolab` sẽ hướng dẫn bạn cách hủy liên kết tài khoản hoyolab
 
-### Usage
+### Cách sử dụng
 
 ```bash
 /unlink_hoyolab
 ```
 
-### Options
+### Tùy chọn
 
-- No options
+- Không có tùy chọn
 
-### Examples
+### Ví dụ
 
-1. **Basic Usage:**
+1. **Cách sử dụng cơ bản:**
 
   ```bash
   /unlink_hoyolab
   ```
-  - By using this command, the bot will show you all account you linked and then you select the account you want to unlink
+  - Bằng cách sử dụng lệnh này, bot sẽ hiển thị tất cả các tài khoản bạn đã liên kết và sau đó bạn chọn tài khoản bạn muốn hủy liên kết
 
-### Troubleshooting
-- Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
+### Khắc phục sự cố
+- Tham gia máy chủ discord nếu bạn muốn được giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 
-- If the command is not working as expected, please let me you. i will fix this
+- Nếu lệnh không hoạt động như mong đợi, vui lòng cho tôi biết. Tôi sẽ sửa lỗi này
+
