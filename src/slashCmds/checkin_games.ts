@@ -8,7 +8,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
   await interaction.deferReply({ ephemeral: true });
   const userCookies = await Cookies.findAll({ where: { userId: interaction.user.id } });
   if (!userCookies.length) {
-    await interaction.editReply('No linked Hoyolab account found');
+    await interaction.editReply('Không tìm thấy tài khoản Hoyolab đã liên kết');
     return;
   }
   const checkedGames: CustomObject<string[]> = {};
@@ -22,14 +22,12 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
           try {
             const status = await checkInGame(cookie, gameId, info);
             if (status?.status === 'OK') {
-              textRespone += 'Check in successful';
+              textRespone += 'Điểm danh thành công';
             } else {
               textRespone += status?.status ?? 'Failed';
-              Logger.error(status);
             }
           } catch ({ message }: any) {
             textRespone += message;
-            Logger.error(message);
           }
           checkedGames[gameId].push(textRespone);
         })
@@ -46,7 +44,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
   const embed = new EmbedBuilder()
     .setColor('Random')
-    .setTitle('Check in status')
+    .setTitle('Thông tin điểm danh')
     .addFields(results)
     .setTimestamp();
   await interaction.editReply({ embeds: [embed] });
@@ -54,7 +52,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 
 export const data: SlashCmd['data'] = {
   name: 'checkin_games',
-  description: 'Check in all games you have linked',
+  description: 'Điểm danh tất cả các trò chơi bạn đã liên kết',
   options: [],
   defaultPermission: true,
 };

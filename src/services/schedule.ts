@@ -27,14 +27,12 @@ export default (client: Client) => {
                   try {
                     const status = await checkInGame(cookie, gameId, info);
                     if (status?.status === 'OK') {
-                      textRespone += 'Check in successful';
+                      textRespone += 'Điểm danh thành công';
                     } else {
                       textRespone += status?.status ?? 'Failed';
-                      Logger.error(status);
                     }
                   } catch ({ message }: any) {
                     textRespone += message;
-                    Logger.error(message);
                   }
                   checkedGames[gameId].push(textRespone);
                 })
@@ -51,7 +49,7 @@ export default (client: Client) => {
 
           const embed = new EmbedBuilder()
             .setColor('Random')
-            .setTitle('Auto Checkin status')
+            .setTitle('Tự động điểm danh')
             .addFields(results)
             .setTimestamp();
           const user = await client.users.fetch(userId);
