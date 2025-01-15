@@ -1,5 +1,6 @@
 import { Client, EmbedBuilder } from 'discord.js';
-import { AutoCheckin, Cookies } from 'models';
+import { groupBy } from 'lodash';
+import { Cookies } from 'models';
 import { RecurrenceRule, scheduleJob } from 'node-schedule';
 import { GAMES } from 'utils';
 import { checkInGame } from 'utils/common';
@@ -11,10 +12,11 @@ export default (client: Client) => {
   rule.tz = 'Asia/Jakarta';
 
   scheduleJob(rule, async () => {
-    const allUser = await AutoCheckin.findAll();
+    const allUserCookies = await Cookies.findAll();
+    const groupedUserCookies = groupBy(allUserCookies, 'userId');
+
     await Promise.all(
-      allUser.map(async ({ userId }) => {
-        const userCookies = await Cookies.findAll({ where: { userId } });
+      Object.entries(groupedUserCookies).map(async ([userId, userCookies]) => {
         if (userCookies.length) {
           const checkedGames: CustomObject<string[]> = {};
           await Promise.all(

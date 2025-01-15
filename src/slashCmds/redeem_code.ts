@@ -89,9 +89,12 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
     })
   );
 
+  const gameInfo = GAMES[game as keyof typeof GAMES];
   const embed = new EmbedBuilder()
     .setColor('Random')
-    .setTitle(`Nhận code game ${GAMES[game as keyof typeof GAMES].name}`)
+    .setTitle(`${gameInfo.icon} ${gameInfo.name}`)
+    .setThumbnail(client.user?.displayAvatarURL() || '')
+    .setDescription(`**Mã đỗi**: ${code}`)
     .addFields(results)
     .setTimestamp();
   await interaction.editReply({ embeds: [embed] });

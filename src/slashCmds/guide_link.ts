@@ -19,7 +19,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
       {
         name: 'B3: Link account',
         value: `- Sau khi lấy cookie, quay lại Bot và dùng lệnh \`/link_hoyolab\`
-          \n- Chọn game bạn muốn link và nhấn enter
+          \n- Chọn những game bạn muốn link và nhấn enter
           \n- Modal sẽ hiện ra, dán cookie vào ô HOYOLAB COOKIE và nhấn submit.`,
       },
     ],

@@ -1,8 +1,8 @@
 export const GAMES = {
-  gi: { name: 'Genshin Impact', id: 2 },
-  hi3: { name: 'Honkai Impact 3rd', id: 1 },
-  hsr: { name: 'Honkai Star Rail', id: 6 },
-  zzz: { name: 'Zenless Zone Zero', id: 8 },
+  gi: { name: 'Genshin Impact', id: 2, icon: process.env.GI_LOGO },
+  hi3: { name: 'Honkai Impact 3rd', id: 1, icon: process.env.HI3_LOGO },
+  hsr: { name: 'Honkai Star Rail', id: 6, icon: process.env.HSR_LOGO },
+  zzz: { name: 'Zenless Zone Zero', id: 8, icon: process.env.ZZZ_LOGO },
 };
 
 export const cookieKeys: string[] = [

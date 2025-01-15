@@ -2,6 +2,7 @@ import {
   GenshinImpact,
   HonkaiImpact,
   HonkaiStarRail,
+  Hoyolab,
   ICookie,
   IDailyClaim,
   LanguageEnum,
@@ -114,5 +115,18 @@ export const checkInGame = async (
     default: {
       return null;
     }
+  }
+};
+
+export const checkExpiredCookies = async (cookie: string): Promise<boolean> => {
+  try {
+    const hoyolab = new Hoyolab({
+      cookie: JSON.parse(cookie) as ICookie,
+      lang: LanguageEnum.VIETNAMESE,
+    });
+    await hoyolab.gameRecordCard();
+    return false;
+  } catch {
+    return true;
   }
 };

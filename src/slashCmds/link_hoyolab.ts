@@ -16,7 +16,10 @@ import { parseCookie } from 'utils/common';
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
   const options = interaction.options.data;
   if (!options.length) {
-    await interaction.reply('Vui lòng chọn các trò chơi muốn liên kết');
+    await interaction.reply({
+      content: 'Vui lòng chọn các trò chơi muốn liên kết',
+      ephemeral: true,
+    });
     return;
   }
   const modal = new ModalBuilder()
@@ -61,7 +64,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
               name: game.nickname,
             };
             results.push({
-              name: gameData.name,
+              name: `${gameData.icon} ${gameData.name}`,
               value: `${game.nickname} - UID: ${game.game_role_id}`,
             });
           }
@@ -70,6 +73,8 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
         const embed = new EmbedBuilder()
           .setColor('Random')
           .setTitle('Liên kết thành công')
+          .setThumbnail(client.user?.displayAvatarURL() || '')
+          .setDescription('Danh sách các game đã liên kết')
           .addFields(results)
           .setTimestamp();
         await modalInteraction.reply({ embeds: [embed], ephemeral: true });

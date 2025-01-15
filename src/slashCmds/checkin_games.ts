@@ -36,15 +36,21 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
   );
 
   const results: { name: string; value: string }[] = Object.entries(checkedGames).map(
-    ([gameId, value]) => ({
-      name: GAMES[gameId as keyof typeof GAMES].name,
-      value: value.join('\n'),
-    })
+    ([gameId, value]) => {
+      const gameInfo = GAMES[gameId as keyof typeof GAMES];
+      return {
+        name: `${gameInfo.icon} ${gameInfo.name}`,
+        value: value.join('\n'),
+      };
+    }
   );
 
   const embed = new EmbedBuilder()
+    .setAuthor({
+      name: `${client.user?.username || 'Kuma Bot'} - Thông tin điểm danh`,
+      iconURL: client.user?.displayAvatarURL() || '',
+    })
     .setColor('Random')
-    .setTitle('Thông tin điểm danh')
     .addFields(results)
     .setTimestamp();
   await interaction.editReply({ embeds: [embed] });
