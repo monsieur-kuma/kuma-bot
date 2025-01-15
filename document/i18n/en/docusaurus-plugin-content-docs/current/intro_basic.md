@@ -39,7 +39,7 @@ Once the bot is running, you can interact with it through your preferred platfor
 - `/redeem_code` - Redeem a code for a hoyolab games
 - `/unlink_hoyolab` - Unlink hoyolab account
 
-For more detailed information, refer to the [documentation](Commands/autoCheckin).
+For more detailed information, refer to the [documentation](Commands/accounts).
 
 Happy botting!
 

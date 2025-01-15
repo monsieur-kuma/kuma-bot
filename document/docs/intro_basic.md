@@ -39,6 +39,6 @@ Khi bot đã chạy, bạn có thể tương tác với nó thông qua nền t�
 - `/redeem_code` - Đổi mã code cho các trò chơi hoyolab
 - `/unlink_hoyolab` - Hủy liên kết tài khoản hoyolab
 
-Để biết thêm thông tin chi tiết, tham khảo [tài liệu](Commands/autoCheckin).
+Để biết thêm thông tin chi tiết, tham khảo [tài liệu](Commands/accounts).
 
 Happy botting!

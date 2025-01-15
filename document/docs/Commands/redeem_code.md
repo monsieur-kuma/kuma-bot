@@ -19,9 +19,20 @@ Lệnh `redeem_code` hướng dẫn bạn cách đổi mã trong trò chơi
 
 1. **Cách sử dụng cơ bản:**
 
+- Gõ lệnh `/redeem_code` sau đó chọn game và nhập mã đổi.
+
   ```bash
   /redeem_code [game: hsr] [code: STARRAILGIFT]
   ```
+<p align="center">
+  <img src="/kuma-bot/img/bot/redeem_code_1.png" />
+</p>
+
+- Sau đó nhấn `enter` bot sẽ check và nhận mã tương ứng cho tất cả tài khoản game liên kết tương ứng
+
+<p align="center">
+  <img height="300" src="/kuma-bot/img/bot/redeem_code_2.png" />
+</p>
 
 ### Khắc phục sự cố
 - Tham gia máy chủ discord nếu bạn cần trợ giúp hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)

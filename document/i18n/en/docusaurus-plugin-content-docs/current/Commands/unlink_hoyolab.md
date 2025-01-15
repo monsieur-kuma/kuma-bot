@@ -23,6 +23,10 @@ The `unlink_hoyolab` command show you the guide to unlink hoyolab account
   ```
   - By using this command, the bot will show you all account you linked and then you select the account you want to unlink
 
+<p align="center">
+  <img  src="/kuma-bot/img/bot/unlink_hoyolab.png" />
+</p>
+
 ### Troubleshooting
 - Join discord server if you want to help or report bugs: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
 

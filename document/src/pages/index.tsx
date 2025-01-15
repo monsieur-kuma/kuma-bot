@@ -26,7 +26,7 @@ function HomepageHeader() {
           })}
         </p>
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/intro">
+          <Link className="button button--secondary button--lg" to="/docs/intro_basic">
             <Translate id="document.btn" description="The homepage 'Get Started' button">
               Tài liệu Kuma bot
             </Translate>

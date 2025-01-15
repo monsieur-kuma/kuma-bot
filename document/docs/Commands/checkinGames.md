@@ -21,6 +21,9 @@ Lệnh `checkin_games` cho phép bạn checkin tất cả các trò chơi bạn 
   ```bash
   /checkin_games
   ```
+<p align="center">
+  <img height="300" src="/kuma-bot/img/bot/checkin_games.png" />
+</p>
 
 ### Khắc phục sự cố
 - Tham gia máy chủ discord nếu bạn muốn được giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)

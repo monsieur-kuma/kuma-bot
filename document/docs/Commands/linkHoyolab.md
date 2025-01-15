@@ -17,10 +17,26 @@ Lệnh `link_hoylab` giúp bạn liên kết với tài khoản hoyolab
 ### Ví dụ
 
 1. **Cách sử dụng cơ bản:**
+- Dùng lệnh `/link_hoyolab`
 
   ```bash
   /link_hoylab [trò-chơi-bạn-muốn-liên-kết]
   ```
+<p align="center">
+  <img height="200" src="/kuma-bot/img/bot/link_account_1.png" />
+</p>
+
+- Sau đó bạn hãy đán cookies đã lấy được từ [hướng dẫn](/docs/intro_basic) vào ô `HOYOLAB COOKIE` và nhấn gửi
+
+<p align="center">
+  <img height="300" src="/kuma-bot/img/bot/link_account_2.png" />
+</p>
+
+- Sau đó bot sẽ tự động check và hiển thị các tài khoản game đã liên kết
+
+<p align="center">
+  <img height="300" src="/kuma-bot/img/bot/link_account_3.png" />
+</p>
 
 ### Khắc phục sự cố
 - Tham gia máy chủ discord nếu bạn muốn được giúp đỡ hoặc báo cáo lỗi: [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh)
