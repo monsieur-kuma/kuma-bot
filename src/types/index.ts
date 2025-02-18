@@ -3,7 +3,7 @@ import type { Settings } from 'models';
 
 export type SlashCmd = {
   conf: {
-    permLevel: string;
+    permLevel: 'User' | 'Bot Admin' | 'Server Owner' | 'Administrator' | 'Bot Owner';
     guildOnly: boolean;
   };
   data: ApplicationCommandData & { defaultPermission: boolean };
@@ -19,7 +19,7 @@ export type Command = {
     enabled: boolean;
     guildOnly: boolean;
     aliases: string[];
-    permLevel: string;
+    permLevel: 'User' | 'Bot Admin' | 'Server Owner' | 'Administrator' | 'Bot Owner';
   };
   help: {
     name: string;

@@ -43,10 +43,13 @@ export default (client: Client) => {
           );
 
           const results: { name: string; value: string }[] = Object.entries(checkedGames).map(
-            ([gameId, value]) => ({
-              name: GAMES[gameId as keyof typeof GAMES].name,
-              value: value.join('\n'),
-            })
+            ([gameId, value]) => {
+              const gameInfo = GAMES[gameId as keyof typeof GAMES];
+              return {
+                name: `${gameInfo.icon} ${gameInfo.name}`,
+                value: value.join('\n'),
+              };
+            }
           );
 
           const embed = new EmbedBuilder()
