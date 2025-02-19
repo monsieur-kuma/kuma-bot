@@ -25,14 +25,14 @@ export const gameRedeemCode: CustomObject<{
 }> = {
   hsr: {
     url: 'https://honkai-star-rail.fandom.com/wiki/Redemption_Code',
-    channelNotify: '1341665996301275137',
+    channelNotify: process.env.HSR_NOTIFY || '',
   },
   gi: {
     url: 'https://genshin-impact.fandom.com/wiki/Promotional_Code',
-    channelNotify: '1341666212664447067',
+    channelNotify: process.env.GI_NOTIFY || '',
   },
   zzz: {
     url: 'https://zenless-zone-zero.fandom.com/wiki/Redemption_Code',
-    channelNotify: '1341666417770238013',
+    channelNotify: process.env.ZZZ_NOTIFY || '',
   },
 };

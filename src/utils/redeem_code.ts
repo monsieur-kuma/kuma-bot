@@ -1,3 +1,4 @@
+import { Client, EmbedBuilder } from 'discord.js';
 import { JSDOM } from 'jsdom';
 import { List } from 'lodash';
 import {
@@ -9,7 +10,7 @@ import {
 } from 'michos_api';
 import { Cookies, RedeemCode } from 'models';
 
-import { gameRedeemCode } from './options';
+import { gameRedeemCode, GAMES } from './options';
 
 export type ICodeFetch = {
   code: string;
@@ -208,7 +209,11 @@ export const redeemCode = async (info: RedeemInfo): Promise<IRedeemCode | null> 
   }
 };
 
-export const autoRedeemCode = async (game: 'hsr' | 'gi' | 'zzz', codes: string[]) => {
+export const autoRedeemCode = async (
+  game: 'hsr' | 'gi' | 'zzz',
+  codes: string[],
+  client: Client
+) => {
   const userCookies = await Cookies.findAll({
     where: {
       [game]: true,
@@ -237,6 +242,22 @@ export const autoRedeemCode = async (game: 'hsr' | 'gi' | 'zzz', codes: string[]
           });
           if (result) {
             redeemResult.success.push(userCookie.userId);
+            const user = await client.users.fetch(userCookie.userId);
+            const embed = new EmbedBuilder()
+              .setColor('Random')
+              .setTitle(`Tự động nhận code ${GAMES[game].name}`)
+              .setThumbnail(client.user?.displayAvatarURL() || '')
+              .setDescription(`**Mã đỗi**: ${code}`)
+              .addFields([
+                {
+                  name: `${userCookie.gameInfo[game].name} - UID: ${userCookie.gameInfo[game].uid}`,
+                  value: result.message === 'OK' ? (result.data as any).msg : result.message,
+                },
+              ])
+              .setTimestamp();
+            user.send({
+              embeds: [embed],
+            });
           } else {
             redeemResult.error.push(userCookie.userId);
           }

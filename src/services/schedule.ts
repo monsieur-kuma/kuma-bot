@@ -131,7 +131,8 @@ export const redeemCodeSchedule = (client: Client) => {
           await (channel as TextChannel).send({ embeds: [embedFetchCode] });
           const redeemSuccess = await autoRedeemCode(
             game as 'hsr' | 'gi' | 'zzz',
-            codes.map((code) => code.code)
+            codes.map((code) => code.code),
+            client
           );
           const redeemFailed = codes.filter((code) => !redeemSuccess.includes(code.code));
           const fields = [];

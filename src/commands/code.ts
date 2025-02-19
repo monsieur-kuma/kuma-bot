@@ -6,7 +6,6 @@ import { gameRedeemCode, GAMES } from 'utils';
 import { autoRedeemCode } from 'utils/redeem_code';
 
 export const run: Command['run'] = async (client, message, args) => {
-  (message.channel as TextChannel).send('Config');
   const [game, code] = args;
   if (!game || !code) {
     await message.reply({
@@ -35,7 +34,7 @@ export const run: Command['run'] = async (client, message, args) => {
     return;
   }
 
-  const success = await autoRedeemCode(game as 'hsr' | 'gi' | 'zzz', [code]);
+  const success = await autoRedeemCode(game as 'hsr' | 'gi' | 'zzz', [code], client);
   if (success.length) {
     if (!isExist) {
       RedeemCode.create({
