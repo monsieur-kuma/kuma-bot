@@ -2,9 +2,7 @@ import { Client, CommandInteraction } from 'discord.js';
 import type { SlashCmd } from 'types';
 
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
-  await interaction.deferReply({ ephemeral: true });
-
-  await interaction.editReply({ content: 'Đang phát triển...' });
+  interaction.reply({ content: 'Đang phát triển...' });
 };
 
 export const data: SlashCmd['data'] = {
