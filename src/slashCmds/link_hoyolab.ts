@@ -69,7 +69,15 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
             });
           }
         });
-        Cookies.create({ userId: interaction.user.id, cookie: JSON.stringify(cookie), gameInfo });
+        Cookies.create({
+          userId: interaction.user.id,
+          cookie: JSON.stringify(cookie),
+          gameInfo,
+          gi: !!gameInfo.gi,
+          hsr: !!gameInfo.hsr,
+          zzz: !!gameInfo.zzz,
+          hi3: !!gameInfo.hi3,
+        });
         const embed = new EmbedBuilder()
           .setColor('Random')
           .setTitle('Liên kết thành công')

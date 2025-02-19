@@ -73,7 +73,8 @@ const client = new Client({
 
   client.login(process.env.BOT_TOKEN);
   const setupSchedule = await import('services/schedule');
-  setupSchedule.default(client);
+  setupSchedule.checkInGameSchedule(client);
+  setupSchedule.redeemCodeSchedule(client);
 })();
 
 process.on('SIGTERM', async () => {

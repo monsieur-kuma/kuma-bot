@@ -21,18 +21,18 @@ export const cookieKeys: string[] = [
 
 export const gameRedeemCode: CustomObject<{
   url: string;
-  querySelector: string;
+  channelNotify: string;
 }> = {
   hsr: {
     url: 'https://honkai-star-rail.fandom.com/wiki/Redemption_Code',
-    querySelector: '.wikitable tbody tr',
+    channelNotify: '1341670132325290046',
   },
   gi: {
     url: 'https://genshin-impact.fandom.com/wiki/Promotional_Code',
-    querySelector: '.wikitable tbody tr',
+    channelNotify: '1341691377368436828',
   },
   zzz: {
     url: 'https://zenless-zone-zero.fandom.com/wiki/Redemption_Code',
-    querySelector: '.wikitable tbody tr',
+    channelNotify: '1341691269445062656',
   },
 };

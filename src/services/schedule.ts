@@ -1,11 +1,12 @@
-import { Client, EmbedBuilder } from 'discord.js';
+import { Client, EmbedBuilder, TextChannel } from 'discord.js';
 import { groupBy } from 'lodash';
-import { Cookies } from 'models';
+import { Cookies, RedeemCode } from 'models';
 import { RecurrenceRule, scheduleJob } from 'node-schedule';
-import { GAMES } from 'utils';
+import { gameRedeemCode, GAMES } from 'utils';
 import { checkInGame } from 'utils/common';
+import { autoRedeemCode, fetchCodeOfGame, ICodeFetch } from 'utils/redeem_code';
 
-export default (client: Client) => {
+export const checkInGameSchedule = (client: Client) => {
   const rule = new RecurrenceRule();
   rule.hour = 0;
   rule.minute = 0;
@@ -63,6 +64,95 @@ export default (client: Client) => {
           } catch {
             /* empty */
           }
+        }
+      })
+    );
+  });
+};
+
+export const redeemCodeSchedule = (client: Client) => {
+  const rule = new RecurrenceRule();
+  rule.hour = 1;
+  rule.minute = 0;
+  rule.tz = 'Asia/Jakarta';
+
+  scheduleJob(rule, async () => {
+    const games = ['hsr', 'gi', 'zzz'];
+    const newCodes: CustomObject<ICodeFetch[]> = {
+      hsr: [],
+      gi: [],
+      zzz: [],
+    };
+    await Promise.all(
+      games.map(async (game) => {
+        const codes = await fetchCodeOfGame(game as 'hsr' | 'gi' | 'zzz');
+        await Promise.all(
+          codes.map(async (code) => {
+            const isExist = await RedeemCode.findOne({
+              where: {
+                code: code.code,
+                game,
+              },
+            });
+            if (!isExist) {
+              newCodes[game].push(code);
+              await RedeemCode.create({
+                code: code.code,
+                game,
+                autoReceived: false,
+                discovered: code.discovered,
+                valid: code.valid,
+                items: code.items,
+              });
+            } else if (isExist.items.length === 0) {
+              isExist.items = code.items;
+              await isExist.save();
+            }
+          })
+        );
+      })
+    );
+
+    await Promise.all(
+      Object.entries(newCodes).map(async ([game, codes]) => {
+        if (codes.length) {
+          const channel = await client.channels.fetch(gameRedeemCode[game].channelNotify);
+          const gameInfo = GAMES[game as keyof typeof GAMES];
+          const embedFetchCode = new EmbedBuilder()
+            .setColor('Random')
+            .setTitle(`Tự động lấy code ${gameInfo.name}`)
+            .addFields(
+              codes.map((code) => ({
+                name: `${code.code}`,
+                value: `- ${code.items.join('\n- ')}`,
+              }))
+            );
+          // redeem code
+          await (channel as TextChannel).send({ embeds: [embedFetchCode] });
+          const redeemSuccess = await autoRedeemCode(
+            game as 'hsr' | 'gi' | 'zzz',
+            codes.map((code) => code.code)
+          );
+          const redeemFailed = codes.filter((code) => !redeemSuccess.includes(code.code));
+          const fields = [];
+          if (redeemSuccess.length > 0) {
+            fields.push({
+              name: 'Thành công',
+              value: `- ${redeemSuccess.join('\n- ')}`,
+            });
+          }
+          if (redeemFailed.length > 0) {
+            fields.push({
+              name: 'Thất bại',
+              value: `- ${redeemFailed.join('\n- ')}`,
+            });
+          }
+          const embedRedeemCode = new EmbedBuilder()
+            .setColor('Random')
+            .setTitle(`${GAMES[game as keyof typeof GAMES].name}`)
+            .setDescription(`Tự động nhận code:`)
+            .addFields(fields);
+          await (channel as TextChannel).send({ embeds: [embedRedeemCode] });
         }
       })
     );

@@ -1,57 +1,8 @@
 import { ChatInputCommandInteraction, Client, CommandInteraction, EmbedBuilder } from 'discord.js';
-import {
-  GenshinImpact,
-  HonkaiStarRail,
-  IRedeemCode,
-  LanguageEnum,
-  ZenlessZoneZero,
-} from 'michos_api';
 import { Cookies } from 'models';
 import type { SlashCmd } from 'types';
 import { GAMES } from 'utils';
-
-type RedeemInfo = {
-  game: string;
-  code: string;
-  cookie: string;
-  gameInfo: { uid: number; server: string };
-};
-
-const redeemCode = async (info: RedeemInfo): Promise<IRedeemCode | null> => {
-  const { game, code, cookie, gameInfo } = info;
-  switch (game) {
-    case 'gi': {
-      const gi = new GenshinImpact({
-        cookie: JSON.parse(cookie),
-        uid: gameInfo.uid,
-        lang: LanguageEnum.VIETNAMESE,
-      });
-      const result = await gi.redeem.claim(code);
-      return result;
-    }
-    case 'hsr': {
-      const hsr = new HonkaiStarRail({
-        cookie: JSON.parse(cookie),
-        uid: gameInfo.uid,
-        lang: LanguageEnum.VIETNAMESE,
-      });
-      const result = await hsr.redeem.claim(code);
-      return result;
-    }
-    case 'zzz': {
-      const zzz = new ZenlessZoneZero({
-        cookie: JSON.parse(cookie),
-        uid: gameInfo.uid,
-        lang: LanguageEnum.VIETNAMESE,
-      });
-      const result = await zzz.redeem.claim(code);
-      return result;
-    }
-    default: {
-      return null;
-    }
-  }
-};
+import { redeemCode } from 'utils/redeem_code';
 
 export const run: SlashCmd['run'] = async (client: Client, interaction: CommandInteraction) => {
   await interaction.deferReply({ ephemeral: true });

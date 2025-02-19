@@ -7,11 +7,13 @@ export class RedeemCode extends Model {
 
   declare autoReceived: boolean;
 
-  declare discovered: string;
+  declare discovered: number;
 
-  declare valid: string;
+  declare valid: number;
 
   declare items: string[];
+
+  declare id: number;
 }
 
 RedeemCode.init(
@@ -30,11 +32,11 @@ RedeemCode.init(
       defaultValue: false,
     },
     discovered: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: true,
     },
     valid: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: true,
     },
     items: {
