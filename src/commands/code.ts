@@ -2,7 +2,7 @@ import { EmbedBuilder, TextChannel } from 'discord.js';
 import { RedeemCode } from 'models';
 import moment from 'moment';
 import type { Command } from 'types';
-import { gameRedeemCode, GAMES } from 'utils';
+import { GAMES } from 'utils';
 import { autoRedeemCode } from 'utils/redeem_code';
 
 export const run: Command['run'] = async (client, message, args) => {
@@ -50,11 +50,12 @@ export const run: Command['run'] = async (client, message, args) => {
       await isExist.save();
     }
 
-    const channel = await client.channels.fetch(gameRedeemCode[game].channelNotify);
+    const gameInfo = GAMES[game as keyof typeof GAMES];
+    const channel = await client.channels.fetch(gameInfo.channelNotify);
     if (channel) {
       const embedRedeemCode = new EmbedBuilder()
         .setColor('Random')
-        .setTitle(`${GAMES[game as keyof typeof GAMES].name}`)
+        .setTitle(`${gameInfo.name}`)
         .setDescription(`Tự động nhận code:`)
         .addFields([
           {

@@ -2,7 +2,7 @@ import { Client, EmbedBuilder, TextChannel } from 'discord.js';
 import { groupBy } from 'lodash';
 import { Cookies, RedeemCode } from 'models';
 import { RecurrenceRule, scheduleJob } from 'node-schedule';
-import { gameRedeemCode, GAMES } from 'utils';
+import { GAMES } from 'utils';
 import { checkInGame } from 'utils/common';
 import { autoRedeemCode, fetchCodeOfGame, ICodeFetch } from 'utils/redeem_code';
 
@@ -116,8 +116,8 @@ export const redeemCodeSchedule = (client: Client) => {
     await Promise.all(
       Object.entries(newCodes).map(async ([game, codes]) => {
         if (codes.length) {
-          const channel = await client.channels.fetch(gameRedeemCode[game].channelNotify);
           const gameInfo = GAMES[game as keyof typeof GAMES];
+          const channel = await client.channels.fetch(gameInfo.channelNotify);
           const embedFetchCode = new EmbedBuilder()
             .setColor('Random')
             .setTitle(`Tự động lấy code ${gameInfo.name}`)
@@ -126,7 +126,8 @@ export const redeemCodeSchedule = (client: Client) => {
                 name: `${code.code}`,
                 value: `- ${code.items.join('\n- ')}`,
               }))
-            );
+            )
+            .setTimestamp();
           // redeem code
           await (channel as TextChannel).send({ embeds: [embedFetchCode] });
           const redeemSuccess = await autoRedeemCode(
@@ -152,7 +153,8 @@ export const redeemCodeSchedule = (client: Client) => {
             .setColor('Random')
             .setTitle(`${GAMES[game as keyof typeof GAMES].name}`)
             .setDescription(`Tự động nhận code:`)
-            .addFields(fields);
+            .addFields(fields)
+            .setTimestamp();
           await (channel as TextChannel).send({ embeds: [embedRedeemCode] });
         }
       })

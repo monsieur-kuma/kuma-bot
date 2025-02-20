@@ -10,7 +10,7 @@ import {
 } from 'michos_api';
 import { Cookies, RedeemCode } from 'models';
 
-import { gameRedeemCode, GAMES } from './options';
+import { GAMES } from './options';
 
 export type ICodeFetch = {
   code: string;
@@ -150,8 +150,9 @@ const extractGICode = (trs: List<Element>): ICodeFetch[] => {
 };
 
 export const fetchCodeOfGame = async (game: 'hsr' | 'gi' | 'zzz'): Promise<ICodeFetch[]> => {
-  const { url } = gameRedeemCode[game];
-  const response = await fetch(url);
+  const { wikiRedeemCode } = GAMES[game];
+  if (!wikiRedeemCode) return [];
+  const response = await fetch(wikiRedeemCode);
   const webData = await response.text();
   const dom = new JSDOM(webData);
   const { document } = dom.window;
@@ -285,8 +286,8 @@ export const autoRedeemCode = async (
       );
       if (index < codes.length - 1) {
         await new Promise((r) => {
-          setTimeout(r, 10000);
-        }); // 10 seconds delay
+          setTimeout(r, 20000);
+        }); // 20 seconds delay
       }
       return Promise.resolve();
     } catch (error) {

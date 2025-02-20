@@ -1,8 +1,32 @@
 export const GAMES = {
-  gi: { name: 'Genshin Impact', id: 2, icon: process.env.GI_LOGO },
-  hi3: { name: 'Honkai Impact 3rd', id: 1, icon: process.env.HI3_LOGO },
-  hsr: { name: 'Honkai Star Rail', id: 6, icon: process.env.HSR_LOGO },
-  zzz: { name: 'Zenless Zone Zero', id: 8, icon: process.env.ZZZ_LOGO },
+  gi: {
+    name: 'Genshin Impact',
+    id: 2,
+    icon: process.env.GI_LOGO,
+    wikiRedeemCode: 'https://genshin-impact.fandom.com/wiki/Promotional_Code',
+    channelNotify: process.env.GI_NOTIFY || '',
+  },
+  hi3: {
+    name: 'Honkai Impact 3rd',
+    id: 1,
+    icon: process.env.HI3_LOGO,
+    wikiRedeemCode: '',
+    channelNotify: '',
+  },
+  hsr: {
+    name: 'Honkai Star Rail',
+    id: 6,
+    icon: process.env.HSR_LOGO,
+    wikiRedeemCode: 'https://honkai-star-rail.fandom.com/wiki/Redemption_Code',
+    channelNotify: process.env.HSR_NOTIFY || '',
+  },
+  zzz: {
+    name: 'Zenless Zone Zero',
+    id: 8,
+    icon: process.env.ZZZ_LOGO,
+    wikiRedeemCode: 'https://zenless-zone-zero.fandom.com/wiki/Redemption_Code',
+    channelNotify: process.env.ZZZ_NOTIFY || '',
+  },
 };
 
 export const cookieKeys: string[] = [
@@ -18,21 +42,3 @@ export const cookieKeys: string[] = [
   'mi18nLang',
   'ltmid_v2',
 ];
-
-export const gameRedeemCode: CustomObject<{
-  url: string;
-  channelNotify: string;
-}> = {
-  hsr: {
-    url: 'https://honkai-star-rail.fandom.com/wiki/Redemption_Code',
-    channelNotify: process.env.HSR_NOTIFY || '',
-  },
-  gi: {
-    url: 'https://genshin-impact.fandom.com/wiki/Promotional_Code',
-    channelNotify: process.env.GI_NOTIFY || '',
-  },
-  zzz: {
-    url: 'https://zenless-zone-zero.fandom.com/wiki/Redemption_Code',
-    channelNotify: process.env.ZZZ_NOTIFY || '',
-  },
-};
