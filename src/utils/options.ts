@@ -5,6 +5,7 @@ export const GAMES = {
     icon: process.env.GI_LOGO,
     wikiRedeemCode: 'https://genshin-impact.fandom.com/wiki/Promotional_Code',
     channelNotify: process.env.GI_NOTIFY || '',
+    logo: 'https://fastcdn.hoyoverse.com/static-resource-v2/2023/11/08/9db76fb146f82c045bc276956f86e047_6878380451593228482.png',
   },
   hi3: {
     name: 'Honkai Impact 3rd',
@@ -12,6 +13,7 @@ export const GAMES = {
     icon: process.env.HI3_LOGO,
     wikiRedeemCode: '',
     channelNotify: '',
+    logo: 'https://fastcdn.hoyoverse.com/static-resource-v2/2025/02/20/b6a51d3139836b1063fe37a6ceae36c1_2186477288419611200.jpg',
   },
   hsr: {
     name: 'Honkai Star Rail',
@@ -19,6 +21,7 @@ export const GAMES = {
     icon: process.env.HSR_LOGO,
     wikiRedeemCode: 'https://honkai-star-rail.fandom.com/wiki/Redemption_Code',
     channelNotify: process.env.HSR_NOTIFY || '',
+    logo: 'https://hyl-static-res-prod.hoyolab.com/communityweb/business/starrail_hoyoverse.png',
   },
   zzz: {
     name: 'Zenless Zone Zero',
@@ -26,6 +29,7 @@ export const GAMES = {
     icon: process.env.ZZZ_LOGO,
     wikiRedeemCode: 'https://zenless-zone-zero.fandom.com/wiki/Redemption_Code',
     channelNotify: process.env.ZZZ_NOTIFY || '',
+    logo: 'https://hyl-static-res-prod.hoyolab.com/communityweb/business/nap.png',
   },
 };
 

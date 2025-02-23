@@ -35,7 +35,7 @@ export const run: Command['run'] = async (client, message, args) => {
   }
 
   const success = await autoRedeemCode(game as 'hsr' | 'gi' | 'zzz', [code], client);
-  if (success.length) {
+  if (success[code]?.success?.length) {
     if (!isExist) {
       RedeemCode.create({
         code,
@@ -59,11 +59,17 @@ export const run: Command['run'] = async (client, message, args) => {
         .setDescription(`Tự động nhận code:`)
         .addFields([
           {
-            name: 'Thành công',
-            value: `- ${code}`,
+            name: code,
+            value: `- Thành công: ${success[code].success.length}\n- Thất bại: ${success[code].error.length}`,
           },
-        ]);
-      await (channel as TextChannel).send({ embeds: [embedRedeemCode] });
+        ])
+        .setTimestamp();
+
+      const botOwner = await client.users.fetch(process.env.BOT_OWNER as string);
+      await botOwner.send({ embeds: [embedRedeemCode] });
+      await (channel as TextChannel).send({
+        content: `Đã tự động nhận code: \`${code}\``,
+      });
     }
   }
 };

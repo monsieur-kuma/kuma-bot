@@ -221,50 +221,53 @@ export const autoRedeemCode = async (
     },
   });
 
-  const redeemSuccess: string[] = [];
+  const redeemResult: CustomObject<{
+    success: string[];
+    error: string[];
+  }> = {};
 
   await codes.reduce(async (promise, code, index) => {
     await promise;
     try {
-      const redeemResult: {
-        success: string[];
-        error: string[];
-      } = {
+      redeemResult[code] = {
         success: [],
         error: [],
       };
       await Promise.all(
         userCookies.map(async (userCookie) => {
-          const result = await redeemCode({
-            game,
-            code,
-            cookie: userCookie.cookie,
-            gameInfo: userCookie.gameInfo[game],
-          });
-          if (result) {
-            redeemResult.success.push(userCookie.userId);
-            const user = await client.users.fetch(userCookie.userId);
-            const embed = new EmbedBuilder()
-              .setColor('Random')
-              .setTitle(`Tự động nhận code ${GAMES[game].name}`)
-              .setThumbnail(client.user?.displayAvatarURL() || '')
-              .setDescription(`**Mã đỗi**: ${code}`)
-              .addFields([
-                {
-                  name: `${userCookie.gameInfo[game].name} - UID: ${userCookie.gameInfo[game].uid}`,
-                  value: result.message === 'OK' ? (result.data as any).msg : result.message,
-                },
-              ])
-              .setTimestamp();
-            user.send({
-              embeds: [embed],
+          try {
+            const result = await redeemCode({
+              game,
+              code,
+              cookie: userCookie.cookie,
+              gameInfo: userCookie.gameInfo[game],
             });
-          } else {
-            redeemResult.error.push(userCookie.userId);
+            if (result) {
+              redeemResult[code].success.push(userCookie.userId);
+              const user = await client.users.fetch(userCookie.userId);
+              const embed = new EmbedBuilder()
+                .setColor('Random')
+                .setTitle(`Tự động nhận code ${GAMES[game].name}`)
+                .setThumbnail(GAMES[game].logo || client.user?.displayAvatarURL() || '')
+                .setDescription(`**Mã đỗi**: ${code}`)
+                .addFields([
+                  {
+                    name: `${userCookie.gameInfo[game].name} - UID: ${userCookie.gameInfo[game].uid}`,
+                    value: result.message === 'OK' ? (result.data as any).msg : result.message,
+                  },
+                ])
+                .setTimestamp();
+              user.send({
+                embeds: [embed],
+              });
+            } else {
+              redeemResult[code].error.push(`${userCookie.userId} - Lỗi server`);
+            }
+          } catch ({ message }: any) {
+            redeemResult[code].error.push(`${userCookie.userId} - ${message}`);
           }
         })
       );
-      redeemSuccess.push(code);
       await RedeemCode.update(
         {
           autoReceived: true,
@@ -276,13 +279,11 @@ export const autoRedeemCode = async (
           },
         }
       );
-      Logger.info(
-        `Nhận code ${code} thành công: ${redeemResult.success.length} ${redeemResult.success.join(
-          ', '
-        )}`
-      );
+
       Logger.error(
-        `Nhận code ${code} thất bại: ${redeemResult.error.length} ${redeemResult.error.join(', ')}`
+        `Nhận code ${code} thất bại - ${redeemResult[code].error.length}: ${redeemResult[
+          code
+        ].error.join(', ')}`
       );
       if (index < codes.length - 1) {
         await new Promise((r) => {
@@ -296,5 +297,5 @@ export const autoRedeemCode = async (
     }
   }, Promise.resolve());
 
-  return redeemSuccess;
+  return redeemResult;
 };

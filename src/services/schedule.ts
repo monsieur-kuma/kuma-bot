@@ -1,4 +1,4 @@
-import { Client, EmbedBuilder, TextChannel } from 'discord.js';
+import { APIEmbedField, Client, EmbedBuilder, TextChannel } from 'discord.js';
 import { groupBy } from 'lodash';
 import { Cookies, RedeemCode } from 'models';
 import { RecurrenceRule, scheduleJob } from 'node-schedule';
@@ -130,32 +130,37 @@ export const redeemCodeSchedule = (client: Client) => {
             .setTimestamp();
           // redeem code
           await (channel as TextChannel).send({ embeds: [embedFetchCode] });
-          const redeemSuccess = await autoRedeemCode(
+          const redeemStatus = await autoRedeemCode(
             game as 'hsr' | 'gi' | 'zzz',
             codes.map((code) => code.code),
             client
           );
-          const redeemFailed = codes.filter((code) => !redeemSuccess.includes(code.code));
-          const fields = [];
-          if (redeemSuccess.length > 0) {
+
+          const fields: APIEmbedField[] = [];
+
+          Object.entries(redeemStatus).forEach(([code, status]) => {
             fields.push({
-              name: 'Thành công',
-              value: `- ${redeemSuccess.join('\n- ')}`,
+              name: code,
+              value: `- Thành công: ${status.success.length}\n- Thất bại: ${status.error.length}`,
             });
-          }
-          if (redeemFailed.length > 0) {
-            fields.push({
-              name: 'Thất bại',
-              value: `- ${redeemFailed.join('\n- ')}`,
-            });
-          }
+          });
           const embedRedeemCode = new EmbedBuilder()
             .setColor('Random')
             .setTitle(`${GAMES[game as keyof typeof GAMES].name}`)
             .setDescription(`Tự động nhận code:`)
             .addFields(fields)
             .setTimestamp();
-          await (channel as TextChannel).send({ embeds: [embedRedeemCode] });
+
+          await (channel as TextChannel).send({
+            content: `Đã tự động nhận tất cả code: ${Object.keys(redeemStatus)
+              .map((code) => `\`${code}\``)
+              .join(', ')}`,
+          });
+
+          const botOwner = await client.users.fetch(process.env.BOT_OWNER as string);
+          await botOwner.send({
+            embeds: [embedRedeemCode],
+          });
         }
       })
     );
