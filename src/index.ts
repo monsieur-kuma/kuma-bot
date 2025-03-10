@@ -75,6 +75,7 @@ const client = new Client({
   const setupSchedule = await import('services/schedule');
   setupSchedule.checkInGameSchedule(client);
   setupSchedule.redeemCodeSchedule(client);
+  setupSchedule.checkExpiredCookiesSchedule(client);
 })();
 
 process.on('SIGTERM', async () => {

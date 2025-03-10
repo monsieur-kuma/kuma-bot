@@ -3,7 +3,7 @@ import { groupBy } from 'lodash';
 import { Cookies, RedeemCode } from 'models';
 import { RecurrenceRule, scheduleJob } from 'node-schedule';
 import { GAMES } from 'utils';
-import { checkInGame } from 'utils/common';
+import { checkExpiredCookies, checkInGame } from 'utils/common';
 import { autoRedeemCode, fetchCodeOfGame, ICodeFetch } from 'utils/redeem_code';
 
 export const checkInGameSchedule = (client: Client) => {
@@ -72,7 +72,7 @@ export const checkInGameSchedule = (client: Client) => {
 
 export const redeemCodeSchedule = (client: Client) => {
   const rule = new RecurrenceRule();
-  rule.hour = 1;
+  rule.hour = [1, 7, 13, 19];
   rule.minute = 0;
   rule.tz = 'Asia/Jakarta';
 
@@ -164,5 +164,65 @@ export const redeemCodeSchedule = (client: Client) => {
         }
       })
     );
+  });
+};
+
+export const checkExpiredCookiesSchedule = (client: Client) => {
+  const rule = new RecurrenceRule();
+  rule.hour = 20;
+  rule.minute = 0;
+  rule.dayOfWeek = [1, 3, 5];
+  rule.tz = 'Asia/Jakarta';
+
+  scheduleJob(rule, async () => {
+    const allUserCookies = await Cookies.findAll();
+    const expiredCookies: Cookies[] = [];
+
+    await allUserCookies.reduce(async (promise, userCookie, index) => {
+      await promise;
+      try {
+        const isExpired = await checkExpiredCookies(userCookie.cookie);
+        if (isExpired) {
+          expiredCookies.push(userCookie);
+        }
+
+        if (index < allUserCookies.length - 1) {
+          await new Promise((r) => {
+            setTimeout(r, 1000);
+          }); // 1 second delay
+        }
+        return Promise.resolve();
+      } catch (error) {
+        Logger.error(`Error checking expired cookies:`, error);
+        return Promise.resolve();
+      }
+    }, Promise.resolve());
+
+    if (expiredCookies.length) {
+      const embed = new EmbedBuilder()
+        .setColor('Random')
+        .setTimestamp()
+        .setTitle(`Tài khoản đã hết hạn: ${expiredCookies.length}`)
+        .setDescription(
+          expiredCookies
+            .map(
+              (cookie) =>
+                `- ${(cookie as any).id} - ${
+                  client.users.cache.get(cookie.userId)?.username ?? 'Unknown'
+                } - ${cookie.userId}`
+            )
+            .join('\n')
+        );
+      const botOwner = await client.users.fetch(process.env.BOT_OWNER as string);
+      await botOwner.send({ embeds: [embed] });
+    } else {
+      const embed = new EmbedBuilder()
+        .setColor('Random')
+        .setTimestamp()
+        .setTitle('Tài khoản đã hết hạn')
+        .setDescription('Không có tài khoản nào đã hết hạn');
+      const botOwner = await client.users.fetch(process.env.BOT_OWNER as string);
+      await botOwner.send({ embeds: [embed] });
+    }
   });
 };
