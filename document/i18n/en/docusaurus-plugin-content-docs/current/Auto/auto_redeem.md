@@ -9,7 +9,7 @@ When you link your account to the bot, it will automatically redeem codes for th
 Codes are automatically updated and redeemed at: 1:00, 7:00, 13:00, 19:00 (UTC+7) every day from these websites:
 - Genshin Impact: [Genshin Impact Wiki](https://genshin-impact.fandom.com/wiki/Promotional_Code)
 - Honkai Star Rail: [Honkai Star Rail Wiki](https://honkai-star-rail.fandom.com/wiki/Redemption_Code)
-- Zenless Zone Zero: [Zenless Zone Zero Wiki]('https://zenless-zone-zero.fandom.com/wiki/Redemption_Code)
+- Zenless Zone Zero: [Zenless Zone Zero Wiki](https://zenless-zone-zero.fandom.com/wiki/Redemption_Code)
 
 
 

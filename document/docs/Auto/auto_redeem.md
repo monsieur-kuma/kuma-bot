@@ -9,7 +9,7 @@ Khi bạn link account vào bot. Bot sẽ tự động nhận code của các ga
 Code sẽ được tự động cập nhật và nhận vào lúc: 1h, 7h, 13h, 19h (UTC+7) mỗi ngày từ các trang web:
 - Genshin Impact: [Genshin Impact Wiki](https://genshin-impact.fandom.com/wiki/Promotional_Code)
 - Honkai Star Rail: [Honkai Star Rail Wiki](https://honkai-star-rail.fandom.com/wiki/Redemption_Code)
-- Zenless Zone Zero: [Zenless Zone Zero Wiki]('https://zenless-zone-zero.fandom.com/wiki/Redemption_Code)
+- Zenless Zone Zero: [Zenless Zone Zero Wiki](https://zenless-zone-zero.fandom.com/wiki/Redemption_Code)
 
 
 
