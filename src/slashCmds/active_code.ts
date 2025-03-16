@@ -6,7 +6,7 @@ export const run: SlashCmd['run'] = async (client: Client, interaction: CommandI
 };
 
 export const data: SlashCmd['data'] = {
-  name: 'acticve_code',
+  name: 'active_code',
   description: 'Xem thông tin mã code đang hoạt động',
   options: [
     {

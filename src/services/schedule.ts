@@ -1,5 +1,5 @@
 import { APIEmbedField, Client, EmbedBuilder, TextChannel } from 'discord.js';
-import { groupBy } from 'lodash';
+import { groupBy, map } from 'lodash';
 import { Cookies, RedeemCode } from 'models';
 import { RecurrenceRule, scheduleJob } from 'node-schedule';
 import { GAMES } from 'utils';
@@ -171,7 +171,7 @@ export const checkExpiredCookiesSchedule = (client: Client) => {
   const rule = new RecurrenceRule();
   rule.hour = 20;
   rule.minute = 0;
-  rule.dayOfWeek = [1, 3, 5];
+  rule.dayOfWeek = [1, 3, 5, 7];
   rule.tz = 'Asia/Jakarta';
 
   scheduleJob(rule, async () => {
@@ -199,6 +199,52 @@ export const checkExpiredCookiesSchedule = (client: Client) => {
     }, Promise.resolve());
 
     if (expiredCookies.length) {
+      const groupedExpiredCookies = groupBy(expiredCookies, 'userId');
+      await Promise.all(
+        Object.entries(groupedExpiredCookies).map(async ([userId, cookies]) => {
+          const user = await client.users.fetch(userId);
+          const fields: APIEmbedField[] = cookies.map(({ gameInfo }, index) => {
+            return {
+              name: `Cookie ${index + 1}`,
+              value: Object.entries(gameInfo)
+                .map(([gameId, info]) => {
+                  return `- ${GAMES[gameId as keyof typeof GAMES].icon} **${info.name}** - UID: **${
+                    info.uid
+                  }**`;
+                })
+                .join('\n'),
+            };
+          });
+
+          const notes = [
+            '- Quá trình này sẽ không ảnh hưởng đến tài khoản hoặc dữ liệu cá nhân của bạn. Nếu bạn muốn tiếp tục sử dụng đầy đủ các chức năng, vui lòng liên kết lại cookie mới của bạn.',
+            '- Quá trình này chỉ xóa những cookie hết hạn, không ảnh hưởng đến cookie còn lại.',
+            `- Nếu bạn có bất kỳ thắc mắc nào hoặc cần hỗ trợ, xin vui lòng liên hệ với <@${process.env.BOT_OWNER}>, hoặc tham gia vào discord [Monsieur Kuma](https://discord.gg/Ykq6qgsHSh) để được hỗ trợ.`,
+          ];
+
+          fields.push({
+            name: 'Lưu ý:',
+            value: notes.join('\n'),
+          });
+          fields.push({
+            name: '\n',
+            value: 'Cảm ơn bạn đã tin tưởng và sử dụng bot. Trân trọng.',
+          });
+
+          const embed = new EmbedBuilder();
+          embed.setColor(0x0099ff);
+          embed.setTimestamp();
+          embed.setTitle('Thông báo về việc xóa Cookie hết hạn');
+          embed.setDescription(
+            'Chào bạn, tôi nhận thấy rằng một số cookie của bạn hiện đã hết hạn. Để tối ưu hóa trải nghiệm và đảm bảo an toàn dữ liệu, chúng tôi sẽ tiến hành xóa các cookie không hoạt động này. Các cookie bị xóa bao gồm:'
+          );
+          embed.addFields(fields);
+
+          await user.send({ embeds: [embed] });
+        })
+      );
+
+      await Cookies.destroy({ where: { id: map(expiredCookies, 'id') } });
       const embed = new EmbedBuilder()
         .setColor('Random')
         .setTimestamp()
