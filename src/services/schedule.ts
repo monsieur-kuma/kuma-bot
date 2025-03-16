@@ -170,8 +170,8 @@ export const redeemCodeSchedule = (client: Client) => {
 export const checkExpiredCookiesSchedule = (client: Client) => {
   const rule = new RecurrenceRule();
   rule.hour = 20;
-  rule.minute = 0;
-  rule.dayOfWeek = [1, 3, 5, 7];
+  rule.minute = 30;
+  rule.dayOfWeek = [0, 1, 3, 5];
   rule.tz = 'Asia/Jakarta';
 
   scheduleJob(rule, async () => {
@@ -206,13 +206,14 @@ export const checkExpiredCookiesSchedule = (client: Client) => {
           const fields: APIEmbedField[] = cookies.map(({ gameInfo }, index) => {
             return {
               name: `Cookie ${index + 1}`,
-              value: Object.entries(gameInfo)
-                .map(([gameId, info]) => {
-                  return `- ${GAMES[gameId as keyof typeof GAMES].icon} **${info.name}** - UID: **${
-                    info.uid
-                  }**`;
-                })
-                .join('\n'),
+              value:
+                Object.entries(gameInfo)
+                  .map(([gameId, info]) => {
+                    return `- ${GAMES[gameId as keyof typeof GAMES].icon} **${
+                      info.name
+                    }** - UID: **${info.uid}**`;
+                  })
+                  .join('\n') || 'Không có thông tin liên kết',
             };
           });
 
