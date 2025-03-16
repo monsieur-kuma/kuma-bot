@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Checkin Games
 
 ## Hướng dẫn cho lệnh `checkin_games`

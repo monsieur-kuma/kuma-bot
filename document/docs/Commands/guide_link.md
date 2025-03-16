@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Guide Link
 
 ## Hướng Dẫn Sử Dụng Lệnh `guide_link`

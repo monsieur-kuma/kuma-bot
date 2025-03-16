@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Accounts
 
 ## Hướng Dẫn Sử Dụng Lệnh `accounts`

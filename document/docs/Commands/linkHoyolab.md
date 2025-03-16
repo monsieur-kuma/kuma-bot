@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Link Hoyolab
 
 ## Hướng dẫn cho lệnh `link_hoylab`
